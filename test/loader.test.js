@@ -122,4 +122,8 @@ describe("loader", () => {
 			alias
 		}))
 	})
+
+	it("should resolve relative imports", async () => {
+		check(await compile('relative/index.styl'))
+	})
 })

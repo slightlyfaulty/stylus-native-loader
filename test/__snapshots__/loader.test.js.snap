@@ -80,10 +80,10 @@ exports[`loader should add vendor prefixes ('vendors' option): output 1`] = `
 
 exports[`loader should allow adding include paths ('include' option): output 1`] = `
 ".a {
-  color: #0ff;
+  color: #aaa;
 }
 .b {
-  color: #00f;
+  color: #bbb;
 }
 "
 `;
@@ -98,13 +98,13 @@ exports[`loader should allow defining variables/functions ('define' option): out
 
 exports[`loader should allow importing files ('import' option): output 1`] = `
 ".a {
-  color: #0ff;
+  color: #aaa;
 }
 .b {
-  color: #00f;
+  color: #bbb;
 }
 .c {
-  color: #ff7f50;
+  color: #ccc;
 }
 "
 `;
@@ -121,7 +121,7 @@ exports[`loader should allow using plugins ('use' option): output 1`] = `
 
 exports[`loader should generate sourcemaps: output 1`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,QAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
@@ -132,11 +132,11 @@ Object {
   ],
   "sourcesContent": Array [
     ".a
-	color aqua",
+	color #aaa",
     ".b
-	color blue",
+	color #bbb",
     ".c
-	color coral",
+	color #ccc",
     "@require 'imports'
 
 $color = red
@@ -153,7 +153,7 @@ body
 
 exports[`loader should generate sourcemaps: output 2`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,QAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
@@ -168,7 +168,7 @@ Object {
 
 exports[`loader should generate sourcemaps: output 3`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,QAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
@@ -205,26 +205,39 @@ exports[`loader should not generate sourcemaps: output 2`] = `undefined`;
 
 exports[`loader should resolve aliases: output 1`] = `
 ".a {
-  color: #0ff;
+  color: #aaa;
 }
 .b {
-  color: #00f;
+  color: #bbb;
 }
 .c {
-  color: #ff7f50;
+  color: #ccc;
 }
 "
 `;
 
 exports[`loader should resolve aliases: output 2`] = `
 ".a {
-  color: #0ff;
+  color: #aaa;
 }
 .b {
-  color: #00f;
+  color: #bbb;
 }
 .c {
-  color: #ff7f50;
+  color: #ccc;
+}
+"
+`;
+
+exports[`loader should resolve relative imports: output 1`] = `
+".a-color {
+  color: #aaa;
+}
+.b-color {
+  color: #bbb;
+}
+.c-color {
+  color: #ccc;
 }
 "
 `;
@@ -261,13 +274,13 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 3`
 
 exports[`loader should work: output 1`] = `
 ".a {
-  color: #0ff;
+  color: #aaa;
 }
 .b {
-  color: #00f;
+  color: #bbb;
 }
 .c {
-  color: #ff7f50;
+  color: #ccc;
 }
 body {
   color: rgba(0,255,255,0.5);
