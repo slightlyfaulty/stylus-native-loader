@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/v/stylus-native-loader.svg?sanitize=true" alt="Version"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/stylus-native-loader.svg" alt="Node.js Version"></a>
-  <a href="https://david-dm.org/webpack-contrib/stylus-native-loader"><img src="https://david-dm.org/webpack-contrib/stylus-native-loader.svg" alt="Dependencies"></a>
+  <a href="https://david-dm.org/slightlyfaulty/stylus-native-loader"><img src="https://david-dm.org/slightlyfaulty/stylus-native-loader.svg" alt="Dependencies"></a>
   <a href="https://packagephobia.now.sh/result?p=stylus-native-loader"><img src="https://packagephobia.now.sh/badge?p=stylus-native-loader" alt="Size"></a>
 </p>
 
