@@ -13,7 +13,7 @@
 
 A super light-weight [Stylus](https://stylus-lang.com/) loader for [Webpack](https://webpack.js.org/) that leverages the built-in power of Stylus. Configured for modern development workflows.
 
-Unlike other Stylus loaders available, *stylus-native-loader* relies solely on the flexible "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus, rather than hacking Webpack's async resolver to play well with the sync Stylus compiler.
+Unlike other Stylus loaders available, *stylus-native-loader* relies solely on the flexible "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus, rather than hacking Webpack's async resolver to play nice with the synchronous Stylus compiler.
 
 The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with support for Webpack aliases) 🥳
 
@@ -23,10 +23,10 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 |                                                              | Min      | Max      | Average      | Diff %  |
 | ------------------------------------------------------------ | -------- | -------- | ------------ | ------- |
-| [**stylus**](https://stylus-lang.com/docs/js.html) (no Webpack) | 72.67ms  | 104.75ms | **80.47ms**  |         |
+| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 72.67ms  | 104.75ms | **80.47ms**  |         |
 | **stylus-native-loader**                                     | 79.61ms  | 104.26ms | **86.41ms**  | +7.38%  |
-| [**stylus-loader**](https://github.com/shama/stylus-loader)  | 85.62ms  | 128.05ms | **104.39ms** | +29.73% |
-| [**stylus-relative-loader**](https://github.com/walmartlabs/stylus-relative-loader) | 117.32ms | 198.78ms | **143.10ms** | +77.83% |
+| **[stylus-loader](https://github.com/shama/stylus-loader)**  | 85.62ms  | 128.05ms | **104.39ms** | +29.73% |
+| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 117.32ms | 198.78ms | **143.10ms** | +77.83% |
 
 ## Getting Started
 
