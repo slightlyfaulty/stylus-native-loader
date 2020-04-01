@@ -1,0 +1,48 @@
+import Evaluator from 'stylus/lib/visitor/evaluator'
+
+/**
+ * @param {Object} aliases
+ * @returns {Function<AliasEvaluator>|boolean}
+ */
+export default function getAliasEvaluator(aliases) {
+	// only return AliasEvaluator when we actually have aliases
+	if (!Object.keys(aliases).length) {
+		return false
+	}
+
+	const aliasList = []
+
+	for (let [alias, path] of Object.entries(aliases)) {
+		let exact = false
+
+		if (alias.slice(-1) === '$') {
+			exact = true
+			alias = alias.slice(0, -1)
+		}
+
+		aliasList.push({alias, path, exact})
+	}
+
+	function resolveAlias(path) {
+		for (const entry of aliasList) {
+			if (entry.exact) {
+				if (entry.alias === path) {
+					return entry.path
+				}
+			} else if (path.indexOf(entry.alias) === 0) {
+				return entry.path + path.slice(entry.alias.length)
+			}
+		}
+
+		return path
+	}
+
+	return class AliasEvaluator extends Evaluator {
+		visitImport(imported) {
+			const node = this.visit(imported.path).first
+			node.string = resolveAlias(node.string)
+
+			return super.visitImport(imported)
+		}
+	}
+}

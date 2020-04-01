@@ -1,0 +1,17 @@
+logs
+*.log
+npm-debug.log*
+.eslintcache
+/coverage
+/dist
+/local
+/reports
+/node_modules
+.DS_Store
+Thumbs.db
+.directory
+.idea
+*.iml
+.vscode
+*.sublime-project
+*.sublime-workspace

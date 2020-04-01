@@ -1,0 +1,65 @@
+{
+  "name": "stylus-native-loader",
+  "version": "1.0.0",
+  "description": "A super light-weight Stylus loader for Webpack",
+  "license": "MIT",
+  "author": "Saul Fautley <saulfautley@gmail.com>",
+  "repository": "slightlyfaulty/stylus-native-loader",
+  "homepage": "https://github.com/slightlyfaulty/stylus-native-loader",
+  "bugs": "https://github.com/slightlyfaulty/stylus-native-loader/issues",
+  "main": "dist/cjs.js",
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "scripts": {
+    "start": "npm run build -- -w",
+    "build": "del-cli dist && cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:coverage": "npm run test -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
+    "benchmark": "babel-node --no-deprecation test/benchmark.js",
+    "release": "standard-version"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "peerDependencies": {
+    "stylus": "^0.54.7",
+    "webpack": "^4.0.0"
+  },
+  "dependencies": {
+    "loader-utils": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.8.4",
+    "@types/jest": "^25.1.4",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
+    "babel-jest": "^25.1.0",
+    "cross-env": "^7.0.0",
+    "del": "^5.1.0",
+    "del-cli": "^3.0.0",
+    "delay": "^4.3.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
+    "memfs": "^3.1.1",
+    "nib": "^1.1.2",
+    "pretty-ms": "^6.0.1",
+    "standard-version": "^7.1.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "stylus-relative-loader": "^4.0.0",
+    "webpack": "^4.41.6"
+  },
+  "keywords": [
+    "webpack",
+    "stylus",
+    "styl",
+    "loader",
+    "stylus-loader",
+    "stylus-relative-loader"
+  ]
+}

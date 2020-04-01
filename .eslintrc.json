@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": [
+    "@webpack-contrib/eslint-config-webpack"
+  ],
+  "rules": {
+    "spaced-comment": "off",
+    "line-comment-position": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": "off",
+    "no-else-return": "off",
+    "consistent-return": "off"
+  }
+}
