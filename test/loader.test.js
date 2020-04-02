@@ -123,6 +123,25 @@ describe("loader", () => {
 		}))
 	})
 
+	it("should import CSS files ('includeCSS' true)", async () => {
+		process.env.DEBUG_OUTPUT = true
+		check(await compile('importCSS.styl', {
+			includeCSS: true,
+			alias: {
+				'b': path.join(__dirname, 'fixtures/css/b.css'),
+			}
+		}))
+	})
+
+	it("should not import CSS files ('includeCSS' false)", async () => {
+		process.env.DEBUG_OUTPUT = true
+		check(await compile('importCSS.styl', {
+			alias: {
+				'b': path.join(__dirname, 'fixtures/css/b.css'),
+			}
+		}))
+	})
+
 	it("should resolve relative imports", async () => {
 		check(await compile('relative/index.styl'))
 	})

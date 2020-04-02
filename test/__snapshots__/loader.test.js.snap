@@ -181,6 +181,17 @@ Object {
 }
 `;
 
+exports[`loader should import CSS files ('includeCSS' true): output 1`] = `
+"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+.a {
+	color: #aaa;
+}
+.b {
+	color: #bbb;
+}
+"
+`;
+
 exports[`loader should not add vendor prefixes ('vendors' option): output 1`] = `
 ".nib {
   background: linear-gradient(to bottom, #fff, #000);
@@ -202,6 +213,13 @@ exports[`loader should not add vendor prefixes ('vendors' option): output 1`] = 
 exports[`loader should not generate sourcemaps: output 1`] = `undefined`;
 
 exports[`loader should not generate sourcemaps: output 2`] = `undefined`;
+
+exports[`loader should not import CSS files ('includeCSS' false): output 1`] = `
+"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+@import 'css/a.css';
+@import 'b';
+"
+`;
 
 exports[`loader should resolve aliases: output 1`] = `
 ".a {

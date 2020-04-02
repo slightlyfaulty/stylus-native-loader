@@ -40,7 +40,10 @@ export default function getAliasEvaluator(aliases) {
 	return class AliasEvaluator extends Evaluator {
 		visitImport(imported) {
 			const node = this.visit(imported.path).first
-			node.string = resolveAlias(node.string)
+
+			if (typeof node.string === 'string' && node.string !== '') {
+				node.string = resolveAlias(node.string)
+			}
 
 			return super.visitImport(imported)
 		}
