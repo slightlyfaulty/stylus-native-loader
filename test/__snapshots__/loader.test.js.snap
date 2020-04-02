@@ -162,6 +162,23 @@ Object {
     "test/fixtures/imports/c.styl",
     "test/fixtures/basic.styl",
   ],
+  "sourcesContent": Array [
+    ".a
+	color #aaa",
+    ".b
+	color #bbb",
+    ".c
+	color #ccc",
+    "@require 'imports'
+
+$color = red
+
+color(color)
+	color complement(color)
+
+body
+	color rgba($color, .5)",
+  ],
   "version": 3,
 }
 `;

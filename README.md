@@ -63,7 +63,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const nib = require('nib')
 
 module.exports = {
-  // Any "original source" option 
+  // Any "original source" option excluding "eval" enables source map generation
+  // @see https://webpack.js.org/configuration/devtool/
   devtool: 'source-map',
 
   resolve: {
@@ -108,9 +109,9 @@ module.exports = {
                * @default `devtool`|false
                */
               sourceMap: {
-                // Force toggle loading of source map file contents
-                content: false,
-                // All other Stylus `sourcemap` options can be set if needed
+                // Toggle loading of source map file contents
+                content: true,
+                // All other Stylus "sourcemap" options can be set if needed
               },
 
               /**

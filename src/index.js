@@ -14,7 +14,7 @@ export default function stylusLoader(source) {
 	const options = loaderOptions ? {...loaderOptions} : {}
 
 	// access Webpack config
-	const webpackConfig = this._compilation.options
+	const webpackConfig = this._compilation.options || {}
 
 	// stylus works better with an absolute filename
 	options.filename = options.filename || this.resourcePath
@@ -22,7 +22,7 @@ export default function stylusLoader(source) {
 	// get sourcemap option in the order: options.sourceMap > options.sourcemap > this.sourceMap
 	if (options.sourceMap != null) {
 		options.sourcemap = options.sourceMap
-	} else if (options.sourcemap == null && this.sourceMap) {
+	} else if (options.sourcemap == null && this.sourceMap && (!webpackConfig.devtool || webpackConfig.devtool.indexOf('eval') !== 0)) {
 		options.sourcemap = {}
 	}
 
@@ -32,24 +32,15 @@ export default function stylusLoader(source) {
 			options.sourcemap = {}
 		}
 
-		// enable loading source map content by default when using an "original source" `devtool` value
-		if (!('content' in options.sourcemap)) {
-			options.sourcemap.content = webpackConfig.devtool
-				&& typeof webpackConfig.devtool === 'string'
-				&& !webpackConfig.devtool.includes('eval')
-				&& !webpackConfig.devtool.includes('nosources')
-				&& !webpackConfig.devtool.includes('cheap-source-map')
-		}
-
-		// source map comment is added by css-loader
-		if (!('comment' in options.sourcemap)) {
-			options.sourcemap.comment = false
-		}
-
-		// set sourceRoot for better handling of paths by css-loader
-		if (!('sourceRoot' in options.sourcemap)) {
-			options.sourcemap.sourceRoot = this.rootContext
-		}
+		// set source map defaults
+		options.sourcemap = Object.assign({
+			// enable loading source map content by default
+			content: true,
+			// source map comment is added by css-loader
+			comment: false,
+			// set sourceRoot for better handling of paths by css-loader
+			sourceRoot: this.rootContext,
+		}, options.sourcemap)
 	}
 
 	// create stylus renderer instance
