@@ -124,7 +124,6 @@ describe("loader", () => {
 	})
 
 	it("should import CSS files ('includeCSS' true)", async () => {
-		process.env.DEBUG_OUTPUT = true
 		check(await compile('importCSS.styl', {
 			includeCSS: true,
 			alias: {
@@ -134,7 +133,6 @@ describe("loader", () => {
 	})
 
 	it("should not import CSS files ('includeCSS' false)", async () => {
-		process.env.DEBUG_OUTPUT = true
 		check(await compile('importCSS.styl', {
 			alias: {
 				'b': path.join(__dirname, 'fixtures/css/b.css'),
