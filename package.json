@@ -1,11 +1,11 @@
 {
   "name": "stylus-native-loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A super light-weight Stylus loader for Webpack",
   "license": "MIT",
   "author": "Saul Fautley <saulfautley@gmail.com>",
   "repository": "slightlyfaulty/stylus-native-loader",
-  "homepage": "https://github.com/slightlyfaulty/stylus-native-loader",
+  "homepage": "https://github.com/slightlyfaulty/stylus-native-loader#readme",
   "bugs": "https://github.com/slightlyfaulty/stylus-native-loader/issues",
   "main": "dist/cjs.js",
   "engines": {
@@ -25,7 +25,7 @@
   ],
   "peerDependencies": {
     "stylus": "^0.54.7",
-    "webpack": "^4.0.0"
+    "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "loader-utils": "^2.0.0"
@@ -47,12 +47,11 @@
     "jest": "^25.1.0",
     "memfs": "^3.1.1",
     "nib": "^1.1.2",
-    "pretty-ms": "^6.0.1",
     "standard-version": "^7.1.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "stylus-relative-loader": "^4.0.0",
-    "webpack": "^4.41.6"
+    "webpack": ">=5.0.0-beta.14"
   },
   "keywords": [
     "webpack",

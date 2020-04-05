@@ -9,6 +9,7 @@
     "no-underscore-dangle": "off",
     "prefer-destructuring": "off",
     "no-else-return": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "prefer-template": "off"
   }
 }
