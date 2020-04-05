@@ -264,6 +264,19 @@ exports[`loader should resolve aliases: output 2`] = `
 "
 `;
 
+exports[`loader should resolve glob imports: output 1`] = `
+".a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
+}
+"
+`;
+
 exports[`loader should resolve relative imports: output 1`] = `
 ".a-color {
   color: #aaa;

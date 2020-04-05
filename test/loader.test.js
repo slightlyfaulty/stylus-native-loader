@@ -143,4 +143,12 @@ describe("loader", () => {
 	it("should resolve relative imports", async () => {
 		check(await compile('relative/index.styl'))
 	})
+
+	it("should resolve glob imports", async () => {
+		check(await compile('globs/index.styl', {
+			alias: {
+				'~': path.join(__dirname, '../node_modules')
+			}
+		}))
+	})
 })
