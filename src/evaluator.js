@@ -20,16 +20,19 @@ export default function getAliasEvaluator(aliases) {
 			alias = alias.slice(0, -1)
 		}
 
-		aliasList.push({alias, path, exact})
+		aliasList.push({
+			alias,
+			root: alias + '/',
+			path,
+			exact,
+		})
 	}
 
 	function resolveAlias(path) {
 		for (const entry of aliasList) {
-			if (entry.exact) {
-				if (entry.alias === path) {
-					return entry.path
-				}
-			} else if (path.indexOf(entry.alias) === 0) {
+			if (entry.alias === path) {
+				return entry.path
+			} else if (!entry.exact && path.indexOf(entry.root) === 0) {
 				return entry.path + path.slice(entry.alias.length)
 			}
 		}
