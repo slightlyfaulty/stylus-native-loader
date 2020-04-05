@@ -11,11 +11,6 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 		devtool: config.devtool || false,
 		context: path.join(__dirname, '../fixtures'),
 		entry: path.resolve(__dirname, '../fixtures', fixture),
-		output: {
-			path: path.join(__dirname, '../outputs'),
-			filename: '[name].bundle.js',
-			chunkFilename: '[name].chunk.js',
-		},
 		module: {
 			rules: [
 				{
@@ -27,7 +22,6 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 				},
 			],
 		},
-		plugins: [],
 		...config,
 	}
 
@@ -44,7 +38,7 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 	return compiler
 }
 
-export function compile(fixture, loaderOptions = {}, config = {}, ) {
+export function compile(fixture, loaderOptions = {}, config = {}) {
 	let loader = null
 	const callback = data => {loader = data}
 
