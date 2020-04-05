@@ -9,12 +9,14 @@ import getAliasEvaluator from './evaluator'
 export default function stylusLoader(source) {
 	const callback = this.async()
 
+	// get options passed to loader (with pre Webpack 5 compatibility)
+	const loaderOptions = this.getOptions ? this.getOptions() : getOptions(this)
+
 	// clone loader options to avoid modifying this.query
-	const loaderOptions = getOptions(this)
 	const options = loaderOptions ? {...loaderOptions} : {}
 
 	// access Webpack config
-	const webpackConfig = this._compilation.options || {}
+	const webpackConfig = this._compilation && isObject(this._compilation.options) ? this._compilation.options : {}
 
 	// stylus works better with an absolute filename
 	options.filename = options.filename || this.resourcePath
@@ -84,6 +86,7 @@ export default function stylusLoader(source) {
 
 	// resolve webpack aliases using a custom evaluator
 	const aliases = 'alias' in options ? options.alias : webpackConfig.resolve.alias
+
 	if (aliases) {
 		const AliasEvaluator = getAliasEvaluator(aliases)
 
@@ -125,7 +128,7 @@ export default function stylusLoader(source) {
 			}
 		}
 
-		// donesies
+		// donesies :)
 		callback(null, css, styl.sourcemap)
 	})
 }
