@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 
 import stylus from 'stylus'
-import pretty from 'pretty-ms'
 import delay from 'delay'
 
 import {getCompiler} from './helpers/compiler'
@@ -66,7 +65,11 @@ function average(arr) {
 }
 
 async function runBenchmarks() {
+	const results = []
+
 	for (const loader of loaders) {
+		console.log(`Benchmarking ${loader}...`)
+
 		const times = []
 
 		// prime the compiler and fs
@@ -87,12 +90,32 @@ async function runBenchmarks() {
 			await delay(delayMs)
 		}
 
-		const min = pretty(Math.min(...times), {millisecondsDecimalDigits: 2})
-		const max = pretty(Math.max(...times), {millisecondsDecimalDigits: 2})
-		const ave = pretty(average(times), {millisecondsDecimalDigits: 2})
-
-		console.log(`\n${loader} - min: ${min}, max: ${max}, ave: ${ave}`)
+		results.push({
+			loader,
+			min: Math.min(...times),
+			max: Math.max(...times),
+			ave: average(times),
+		})
 	}
+
+	results.sort((a, b) => a.ave - b.ave)
+
+	const table = {}
+
+	for (const result of results) {
+		table[result.loader] = {
+			Min: result.min.toFixed(2) + 'ms',
+			Max: result.max.toFixed(2) + 'ms',
+			Average: result.ave.toFixed(2) + 'ms',
+		}
+
+		if (result !== results[0]) {
+			table[result.loader]['Diff %'] = '+' + (result.ave / results[0].ave * 100 - 100).toFixed(2) + '%'
+		}
+	}
+
+	console.table(table)
+	process.exit()
 }
 
 console.log(`Running benchmarks (${iterations} iterations, ${delayMs}ms delay)...`)
