@@ -147,7 +147,7 @@ describe("loader", () => {
 	it("should resolve glob imports", async () => {
 		check(await compile('globs/index.styl', {
 			alias: {
-				'~': path.join(__dirname, '../node_modules')
+				'!': '/some/random/path'
 			}
 		}))
 	})
