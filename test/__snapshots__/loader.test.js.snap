@@ -121,31 +121,32 @@ exports[`loader should allow using plugins ('use' option): output 1`] = `
 
 exports[`loader should generate sourcemaps: output 1`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
+    "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
     "test/fixtures/imports/c.styl",
-    "test/fixtures/basic.styl",
   ],
   "sourcesContent": Array [
+    "$color = red
+
+color(color)
+	color complement(color)
+
+body
+	color rgba($color, .5)
+
+@require 'imports'
+",
     ".a
 	color #aaa",
     ".b
 	color #bbb",
     ".c
 	color #ccc",
-    "@require 'imports'
-
-$color = red
-
-color(color)
-	color complement(color)
-
-body
-	color rgba($color, .5)",
   ],
   "version": 3,
 }
@@ -153,31 +154,32 @@ body
 
 exports[`loader should generate sourcemaps: output 2`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
+    "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
     "test/fixtures/imports/c.styl",
-    "test/fixtures/basic.styl",
   ],
   "sourcesContent": Array [
+    "$color = red
+
+color(color)
+	color complement(color)
+
+body
+	color rgba($color, .5)
+
+@require 'imports'
+",
     ".a
 	color #aaa",
     ".b
 	color #bbb",
     ".c
 	color #ccc",
-    "@require 'imports'
-
-$color = red
-
-color(color)
-	color complement(color)
-
-body
-	color rgba($color, .5)",
   ],
   "version": 3,
 }
@@ -185,14 +187,14 @@ body
 
 exports[`loader should generate sourcemaps: output 3`] = `
 Object {
-  "mappings": "AAAA;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACDD;EACC,OAAM,KAAN;;ACMD;EAFC,OAAM,oBAAN",
+  "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
   "sources": Array [
+    "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
     "test/fixtures/imports/c.styl",
-    "test/fixtures/basic.styl",
   ],
   "version": 3,
 }
@@ -320,8 +322,11 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 3`
 "
 `;
 
-exports[`loader should work: output 1`] = `
-".a {
+exports[`loader should work with vue files: output 1`] = `
+"body {
+  color: rgba(0,255,255,0.5);
+}
+.a {
   color: #aaa;
 }
 .b {
@@ -330,8 +335,24 @@ exports[`loader should work: output 1`] = `
 .c {
   color: #ccc;
 }
-body {
+h1 {
+  color: #c04f82;
+}
+"
+`;
+
+exports[`loader should work: output 1`] = `
+"body {
   color: rgba(0,255,255,0.5);
+}
+.a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
 }
 "
 `;

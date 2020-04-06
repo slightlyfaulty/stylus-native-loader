@@ -7,10 +7,10 @@ import {compile} from './helpers/compiler'
 
 function check(stats, outputIndex = 0) {
 	expect(stats.compilation.warnings).toEqual([])
-	expect(stats.loader.output[outputIndex]).toMatchSnapshot('output')
+	expect(stats.result.output[outputIndex]).toMatchSnapshot('output')
 
 	if (process.env.DEBUG_OUTPUT) {
-		console.debug(stats.loader.output[outputIndex])
+		console.debug(stats.result.output[outputIndex])
 	}
 }
 
@@ -149,6 +149,24 @@ describe("loader", () => {
 			alias: {
 				'!': '/some/random/path'
 			}
+		}))
+	})
+
+	it("should work with vue files", async () => {
+		const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+		check(await compile('vue/index.js', {}, {
+			module: {
+				rules: [
+					{
+						test: /\.vue$/,
+						loader: 'vue-loader',
+					},
+				],
+			},
+			plugins: [
+				new VueLoaderPlugin()
+			],
 		}))
 	})
 })
