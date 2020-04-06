@@ -17,8 +17,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "npm run test -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
     "benchmark": "babel-node --no-deprecation test/benchmark.js",
-    "release": "standard-version",
-    "publish": "npm run build && npm publish"
+    "release": "standard-version"
   },
   "files": [
     "dist",
