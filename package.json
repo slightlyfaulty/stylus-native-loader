@@ -1,6 +1,6 @@
 {
   "name": "stylus-native-loader",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A super light-weight Stylus loader for Webpack",
   "license": "MIT",
   "author": "Saul Fautley <saulfautley@gmail.com>",
@@ -17,7 +17,8 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "npm run test -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
     "benchmark": "babel-node --no-deprecation test/benchmark.js",
-    "release": "standard-version"
+    "release": "standard-version",
+    "publish": "npm run build && npm publish"
   },
   "files": [
     "dist",
