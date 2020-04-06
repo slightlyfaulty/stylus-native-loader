@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://stylus-lang.com/"><img src="https://stylus-lang.com/img/stylus-logo.svg" alt="Stylus" title="Stylus" height="80"></a>
-  <a href="https://webpack.js.org/"><img src="https://webpack.js.org/assets/icon-square-big.svg" alt="Webpack" title="Webpack" height="120"></a>
+  <a href="https://stylus-lang.com/"><img src="https://stylus-lang.com/img/stylus-logo.svg" alt="Stylus" title="Stylus" height="80" valign="middle"></a>
+  <a href="https://webpack.js.org/"><img src="https://webpack.js.org/assets/icon-square-big.svg" alt="Webpack" title="Webpack" height="120" valign="middle"></a>
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/v/stylus-native-loader.svg?sanitize=true" alt="Version"></a>
@@ -30,12 +30,12 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 ## Getting Started
 
-To begin, install `stylus` and `stylus-native-loader`:
+To begin, install `stylus-native-loader` and `stylus`:
 
 ```console
-$ yarn add -D stylus stylus-native-loader
-OR
-$ npm i -D stylus stylus-native-loader
+yarn add -D stylus-native-loader stylus
+# or
+npm i -D stylus-native-loader stylus
 ```
 
 Then add the loader to your **webpack.config.js**. For example, a minimal configuration might look like this:
@@ -81,7 +81,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.styl$/i,
+        test: /\.styl$/,
         use: [
           {
             // Extracts CSS to a separate file
