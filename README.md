@@ -32,7 +32,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 To begin, install `stylus-native-loader` and `stylus`:
 
-```console
+```sh
 yarn add -D stylus-native-loader stylus
 # or
 npm i -D stylus-native-loader stylus
