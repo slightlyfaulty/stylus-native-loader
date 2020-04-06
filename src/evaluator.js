@@ -20,9 +20,11 @@ export default function getAliasEvaluator(aliases) {
 			alias = alias.slice(0, -1)
 		}
 
+		path = path.replace(/[/\\]+$/, '')
+
 		aliasList.push({
 			alias,
-			root: alias + '/',
+			aliasRoot: alias + '/',
 			path,
 			exact,
 		})
@@ -32,7 +34,7 @@ export default function getAliasEvaluator(aliases) {
 		for (const entry of aliasList) {
 			if (entry.alias === path) {
 				return entry.path
-			} else if (!entry.exact && path.indexOf(entry.root) === 0) {
+			} else if (!entry.exact && path.indexOf(entry.aliasRoot) === 0) {
 				return entry.path + path.slice(entry.alias.length)
 			}
 		}
