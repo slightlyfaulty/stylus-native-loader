@@ -1,3 +1,10 @@
 .define
 	padding $padding
 	margin double($padding)
+
+if typeof($object) == 'object'
+	.hash
+		color $object.colors.primary
+else
+	.expression
+		color $object[1][1]

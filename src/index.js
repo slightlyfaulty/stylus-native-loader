@@ -28,13 +28,12 @@ export default function stylusLoader(source) {
 		options.sourcemap = {}
 	}
 
-	// set stylus sourcemap options
+	// set stylus sourcemap defaults
 	if (options.sourcemap) {
 		if (!isObject(options.sourcemap)) {
 			options.sourcemap = {}
 		}
 
-		// set source map defaults
 		options.sourcemap = Object.assign({
 			// enable loading source map content by default
 			content: true,
@@ -72,10 +71,12 @@ export default function stylusLoader(source) {
 		styl.define('url', stylus.resolver(options.resolveUrl))
 	}
 
-	// define custom variables/functions
+	// define global variables/functions
 	if (isObject(options.define)) {
+		const raw = options.defineRaw == null ? true : options.defineRaw
+
 		for (const entry of Object.entries(options.define)) {
-			styl.define(...entry)
+			styl.define(...entry, raw)
 		}
 	}
 
@@ -97,6 +98,11 @@ export default function stylusLoader(source) {
 
 	// keep track of imported files (used by Stylus CLI watch mode)
 	options._imports = []
+
+	// trigger callback before compiling
+	if (typeof options.beforeCompile === 'function') {
+		options.beforeCompile(styl, this, options)
+	}
 
 	// let stylus do its magic
 	styl.render(async (err, css) => {

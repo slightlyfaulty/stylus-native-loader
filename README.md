@@ -45,7 +45,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.styl$/i,
+        test: /\.styl$/,
         use: ['style-loader', 'css-loader', 'stylus-native-loader'],
       },
     ],
@@ -55,7 +55,7 @@ module.exports = {
 
 ## Configuration by Example
 
-Below is an example **webpack.config.js** using all stylus-native-loader options. None are required.
+Below is an example **webpack.config.js** using all `stylus-native-loader` options. None are required.
 
 ```js
 const path = require('path')
@@ -100,8 +100,8 @@ module.exports = {
             loader: 'stylus-native-loader',
             options: {
               /**
-               * Toggle/configure source map generation. This will be
-               * set automatically for you according to `devtool`.
+               * Toggle/configure source map generation.
+               * Set according to `devtool` config value by default.
                *
                * @see https://stylus-lang.com/docs/sourcemaps.html
                *
@@ -109,7 +109,7 @@ module.exports = {
                * @default `devtool`|false
                */
               sourceMap: {
-                // Toggle loading of source map file contents
+                // Toggle loading of source file contents into source map
                 content: true,
                 // All other Stylus "sourcemap" options can be set if needed
               },
@@ -152,6 +152,16 @@ module.exports = {
               },
 
               /**
+               * The 3rd parameter of the Stylus `define()` method.
+               * Controls whether object literals are converted into
+               * hashes (true) or lists/expressions (false).
+               *
+               * @type {boolean}
+               * @default true
+               */
+              defineRaw: false,
+
+              /**
                * Toggle built-in Stylus/Nib vendor prefixing.
                * Disabled by default (prefer PostCSS Autoprefixer).
                *
@@ -187,6 +197,24 @@ module.exports = {
                */
               alias: {
                 'mixins': path.join(__dirname, 'src/styl/mixins'),
+              },
+
+              /**
+               * Callback that triggers right before Stylus compiles,
+               * allowing access to the Stylus JS API and loader context.
+               *
+               * @see https://stylus-lang.com/docs/js.html
+               *
+               * @type {Function}
+               * @default undefined
+               *
+               * @param {Renderer} renderer The stylus renderer instance
+               * @param {Object} context The loader context object
+               * @param {Object} options The unified Stylus options object
+               */
+              beforeCompile(renderer, context, options) {
+                renderer.define('expression', {foo: 'bar', bar: 'baz'})
+                renderer.define('hash', {foo: 'bar', bar: 'baz'}, true)
               },
 
               /**

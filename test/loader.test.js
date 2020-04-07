@@ -19,17 +19,20 @@ describe("loader", () => {
 		check(await compile('basic.styl'))
 	})
 
-	it("should generate sourcemaps", async () => {
+	it("should generate source maps accordingly", async () => {
+		// generate source map with full source content (devtool)
 		check(await compile('basic.styl', {}, {
 			devtool: 'source-map'
 		}), 1)
 
+		// generate source map with full source content (sourceMap)
 		check(await compile('basic.styl', {
 			sourceMap: true
 		}, {
 			devtool: 'eval-cheap-source-map'
 		}), 1)
 
+		// generate source map with without source content
 		check(await compile('basic.styl', {
 			sourcemap: {
 				content: false
@@ -37,13 +40,13 @@ describe("loader", () => {
 		}, {
 			devtool: 'source-map'
 		}), 1)
-	})
 
-	it("should not generate sourcemaps", async () => {
+		// don't generate source map (devtool)
 		check(await compile('basic.styl', {}, {
 			devtool: 'eval-cheap-source-map',
 		}), 1)
 
+		// don't generate source map (sourceMap)
 		check(await compile('basic.styl', {
 			sourceMap: false,
 		}, {
@@ -70,21 +73,31 @@ describe("loader", () => {
 	})
 
 	it("should allow defining variables/functions ('define' option)", async () => {
+		const define = {
+			'$padding': new stylus.nodes.Unit(10, 'px'),
+			'$object': {colors: {primary: '#123456'}},
+			'double': n => n.operate('+', n),
+		}
+
+		// objects converted to hashes by default
 		check(await compile('define.styl', {
-			define: {
-				'$padding': new stylus.nodes.Unit(10, 'px'),
-				'double': n => n.operate('+', n),
-			}
+			define
+		}))
+
+		// objects converted to lists (aka expressions)
+		check(await compile('define.styl', {
+			define,
+			defineRaw: false,
 		}))
 	})
 
-	it("should not add vendor prefixes ('vendors' option)", async () => {
+	it("should allow toggling vendor prefixes ('vendors' option)", async () => {
+		// vendors disabled by default
 		check(await compile('vendors.styl', {
 			use: nib()
 		}))
-	})
 
-	it("should add vendor prefixes ('vendors' option)", async () => {
+		// vendors enabled
 		check(await compile('vendors.styl', {
 			use: nib(),
 			vendors: true,
@@ -92,14 +105,17 @@ describe("loader", () => {
 	})
 
 	it("should resolve urls accordingly ('resolveUrl' option)", async () => {
+		// resolve urls
 		check(await compile('resolveUrl.styl', {
 			resolveUrl: true
 		}))
 
+		// resolve urls without checking file existence
 		check(await compile('resolveUrl.styl', {
 			resolveUrl: {nocheck: true}
 		}))
 
+		// don't resolve urls
 		check(await compile('resolveUrl.styl', {
 			resolveUrl: false
 		}))
@@ -112,30 +128,48 @@ describe("loader", () => {
 			'imp': path.join(__dirname, 'fixtures/imports'),
 		}
 
+		// resolve aliases set in webpack config
 		check(await compile('alias.styl', {}, {
 			resolve: {
 				alias
 			},
 		}))
 
+		// resolve aliases set in loader options
 		check(await compile('alias.styl', {
 			alias
 		}))
 	})
 
-	it("should import CSS files ('includeCSS' true)", async () => {
+	it("should allow toggling CSS file imports ('includeCSS' option)", async () => {
+		const alias = {
+			'b': path.join(__dirname, 'fixtures/css/b.css'),
+		}
+
+		// don't include imported CSS in output by default
 		check(await compile('importCSS.styl', {
+			alias,
+		}))
+
+		// include imported CSS in output
+		check(await compile('importCSS.styl', {
+			alias,
 			includeCSS: true,
-			alias: {
-				'b': path.join(__dirname, 'fixtures/css/b.css'),
-			}
 		}))
 	})
 
-	it("should not import CSS files ('includeCSS' false)", async () => {
-		check(await compile('importCSS.styl', {
-			alias: {
-				'b': path.join(__dirname, 'fixtures/css/b.css'),
+	it("should trigger 'beforeCompile' callback", async () => {
+		check(await compile('include.styl', {
+			beforeCompile(renderer, context, options) {
+				renderer.include(path.join(__dirname, 'fixtures/imports'))
+
+				if (!context.rootContext) {
+					throw new Error(`beforeCompile() - invalid "context" parameter.`)
+				}
+
+				if (!options.beforeCompile) {
+					throw new Error(`beforeCompile() - invalid "options" parameter.`)
+				}
 			}
 		}))
 	})
@@ -152,7 +186,7 @@ describe("loader", () => {
 		}))
 	})
 
-	it("should work with vue files", async () => {
+	it("should work with vue component files", async () => {
 		const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 		check(await compile('vue/index.js', {}, {

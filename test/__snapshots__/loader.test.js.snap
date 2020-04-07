@@ -1,6 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should add vendor prefixes ('vendors' option): output 1`] = `
+exports[`loader should allow adding include paths ('include' option): output 1`] = `
+".a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
+}
+"
+`;
+
+exports[`loader should allow defining variables/functions ('define' option): output 1`] = `
+".define {
+  padding: 10px;
+  margin: 20px;
+}
+.hash {
+  color: '#123456';
+}
+"
+`;
+
+exports[`loader should allow defining variables/functions ('define' option): output 2`] = `
+".define {
+  padding: 10px;
+  margin: 20px;
+}
+.expression {
+  color: '#123456';
+}
+"
+`;
+
+exports[`loader should allow importing files ('import' option): output 1`] = `
+".a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
+}
+"
+`;
+
+exports[`loader should allow toggling CSS file imports ('includeCSS' option): output 1`] = `
+"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+@import 'css/a.css';
+@import 'b';
+"
+`;
+
+exports[`loader should allow toggling CSS file imports ('includeCSS' option): output 2`] = `
+"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+.a {
+	color: #aaa;
+}
+.b {
+	color: #bbb;
+}
+"
+`;
+
+exports[`loader should allow toggling vendor prefixes ('vendors' option): output 1`] = `
+".nib {
+  background: linear-gradient(to bottom, #fff, #000);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+@keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+"
+`;
+
+exports[`loader should allow toggling vendor prefixes ('vendors' option): output 2`] = `
 ".nib {
   background: -webkit-linear-gradient(top, #fff, #000);
   background: -moz-linear-gradient(top, #fff, #000);
@@ -78,37 +162,6 @@ exports[`loader should add vendor prefixes ('vendors' option): output 1`] = `
 "
 `;
 
-exports[`loader should allow adding include paths ('include' option): output 1`] = `
-".a {
-  color: #aaa;
-}
-.b {
-  color: #bbb;
-}
-"
-`;
-
-exports[`loader should allow defining variables/functions ('define' option): output 1`] = `
-".define {
-  padding: 10px;
-  margin: 20px;
-}
-"
-`;
-
-exports[`loader should allow importing files ('import' option): output 1`] = `
-".a {
-  color: #aaa;
-}
-.b {
-  color: #bbb;
-}
-.c {
-  color: #ccc;
-}
-"
-`;
-
 exports[`loader should allow using plugins ('use' option): output 1`] = `
 ".nib {
   background: linear-gradient(to bottom, #fff, #000);
@@ -119,7 +172,7 @@ exports[`loader should allow using plugins ('use' option): output 1`] = `
 "
 `;
 
-exports[`loader should generate sourcemaps: output 1`] = `
+exports[`loader should generate source maps accordingly: output 1`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
@@ -139,8 +192,7 @@ color(color)
 body
 	color rgba($color, .5)
 
-@require 'imports'
-",
+@require 'imports'",
     ".a
 	color #aaa",
     ".b
@@ -152,7 +204,7 @@ body
 }
 `;
 
-exports[`loader should generate sourcemaps: output 2`] = `
+exports[`loader should generate source maps accordingly: output 2`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
@@ -172,8 +224,7 @@ color(color)
 body
 	color rgba($color, .5)
 
-@require 'imports'
-",
+@require 'imports'",
     ".a
 	color #aaa",
     ".b
@@ -185,7 +236,7 @@ body
 }
 `;
 
-exports[`loader should generate sourcemaps: output 3`] = `
+exports[`loader should generate source maps accordingly: output 3`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
@@ -200,45 +251,9 @@ Object {
 }
 `;
 
-exports[`loader should import CSS files ('includeCSS' true): output 1`] = `
-"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
-.a {
-	color: #aaa;
-}
-.b {
-	color: #bbb;
-}
-"
-`;
+exports[`loader should generate source maps accordingly: output 4`] = `undefined`;
 
-exports[`loader should not add vendor prefixes ('vendors' option): output 1`] = `
-".nib {
-  background: linear-gradient(to bottom, #fff, #000);
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-@keyframes slidein {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-"
-`;
-
-exports[`loader should not generate sourcemaps: output 1`] = `undefined`;
-
-exports[`loader should not generate sourcemaps: output 2`] = `undefined`;
-
-exports[`loader should not import CSS files ('includeCSS' false): output 1`] = `
-"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
-@import 'css/a.css';
-@import 'b';
-"
-`;
+exports[`loader should generate source maps accordingly: output 5`] = `undefined`;
 
 exports[`loader should resolve aliases: output 1`] = `
 ".a {
@@ -318,6 +333,38 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 3`
 }
 .fake {
   background-image: url(\\"fake.png\\");
+}
+"
+`;
+
+exports[`loader should trigger 'beforeCompile' callback: output 1`] = `
+".a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
+}
+"
+`;
+
+exports[`loader should work with vue component files: output 1`] = `
+"body {
+  color: rgba(0,255,255,0.5);
+}
+.a {
+  color: #aaa;
+}
+.b {
+  color: #bbb;
+}
+.c {
+  color: #ccc;
+}
+h1 {
+  color: #c04f82;
 }
 "
 `;
