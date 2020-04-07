@@ -30,16 +30,16 @@ export default function getAliasEvaluator(aliases) {
 		})
 	}
 
-	function resolveAlias(path) {
+	function resolveAlias(importPath) {
 		for (const entry of aliasList) {
-			if (entry.alias === path) {
+			if (entry.alias === importPath) {
 				return entry.path
-			} else if (!entry.exact && path.indexOf(entry.aliasRoot) === 0) {
-				return entry.path + path.slice(entry.alias.length)
+			} else if (!entry.exact && importPath.indexOf(entry.aliasRoot) === 0) {
+				return entry.path + importPath.slice(entry.alias.length)
 			}
 		}
 
-		return path
+		return importPath
 	}
 
 	return class AliasEvaluator extends Evaluator {
