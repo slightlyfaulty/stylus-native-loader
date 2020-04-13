@@ -11,11 +11,11 @@
 
 # stylus-native-loader
 
-A super light-weight [Stylus](https://stylus-lang.com/) loader for [Webpack](https://webpack.js.org/) that leverages the built-in power of Stylus. Configured for modern development workflows.
+A super fast [Stylus](https://stylus-lang.com/) loader for [Webpack](https://webpack.js.org/) that leverages the built-in power of Stylus. Configured for modern development.
 
-Unlike other Stylus loaders available, *stylus-native-loader* relies solely on the flexible "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus, rather than hacking Webpack's async resolver to play nice with the synchronous Stylus compiler.
+Unlike other Stylus loaders available, **stylus-native-loader** relies solely on the flexible "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus, rather than bending Webpack's async resolver to work alongside the synchronous Stylus compiler (which comes with many limitations as well as significant overhead).
 
-The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with support for Webpack aliases) 🥳
+The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality with Webpack alias support 🥳
 
 ## Benchmarks
 
@@ -210,7 +210,7 @@ module.exports = {
                *
                * @param {Renderer} renderer The stylus renderer instance
                * @param {Object} context The loader context object
-               * @param {Object} options The unified Stylus options object
+               * @param {Object} options The unified stylus options object
                */
               beforeCompile(renderer, context, options) {
                 renderer.define('expression', {foo: 'bar', bar: 'baz'})
