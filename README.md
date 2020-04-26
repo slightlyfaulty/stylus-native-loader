@@ -13,9 +13,9 @@
 
 A super fast [Stylus](https://stylus-lang.com/) loader for [Webpack](https://webpack.js.org/) that leverages the built-in power of Stylus. Configured for modern development.
 
-Unlike other Stylus loaders available, **stylus-native-loader** relies solely on the flexible "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus, rather than bending Webpack's async resolver to work alongside the synchronous Stylus compiler (which comes with many limitations as well as significant overhead).
+Unlike other Stylus loaders available that make use of Webpack's resolver for import path resolution (which comes with several limitations and increased overhead), stylus-native-loader relies solely on the powerful "native" [@import/require](https://stylus-lang.com/docs/import.html) capabilities of Stylus.
 
-The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality with Webpack alias support 🥳
+The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with Webpack alias support) 🥳
 
 ## Benchmarks
 
