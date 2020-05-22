@@ -86,14 +86,15 @@ export default function stylusLoader(source) {
 	}
 
 	// resolve webpack aliases using a custom evaluator
-	const aliases = 'alias' in options ? options.alias : webpackConfig.resolve.alias
+	let aliases = 'alias' in options ? options.alias : webpackConfig.resolve.alias
+	const resolveTilde = 'resolveTilde' in options ? options.resolveTilde : true
 
-	if (aliases) {
-		const AliasEvaluator = getAliasEvaluator(aliases)
+	if (typeof aliases !== 'object' || !Object.keys(aliases).length) {
+		aliases = false
+	}
 
-		if (AliasEvaluator) {
-			styl.set('Evaluator', AliasEvaluator)
-		}
+	if (aliases || resolveTilde) {
+		styl.set('Evaluator', getAliasEvaluator(aliases, resolveTilde))
 	}
 
 	// keep track of imported files (used by Stylus CLI watch mode)

@@ -70,10 +70,10 @@ module.exports = {
   resolve: {
     // All aliases are used for Stylus @import and @require path resolution
     alias: {
-      // Maps @import('~styl/*') to @import('/path/to/src/styl/*')
+      // Maps @import '~styl/*' to '/path/to/src/styl/*'
       '~styl': path.join(__dirname, 'src/styl'),
 
-      // Maps @import('mixins') to @import('/path/to/src/styl/mixins')
+      // Maps @import 'mixins' to '/path/to/src/styl/mixins'
       'mixins$': path.join(__dirname, 'src/styl/mixins'),
     },
   },
@@ -198,6 +198,15 @@ module.exports = {
               alias: {
                 'mixins': path.join(__dirname, 'src/styl/mixins'),
               },
+
+              /**
+               * Resolve non-alias paths beginning with `~` to `node_modules`.
+               * E.g. @import '~nib' becomes '/path/to/node_modules/nib'.
+               *
+               * @type {boolean}
+               * @default true
+               */
+              resolveTilde: true,
 
               /**
                * Callback that triggers right before Stylus compiles,

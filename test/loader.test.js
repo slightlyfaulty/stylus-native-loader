@@ -141,6 +141,10 @@ describe("loader", () => {
 		}))
 	})
 
+	it("should resolve tilde paths", async () => {
+		check(await compile('tilde.styl'))
+	})
+
 	it("should allow toggling CSS file imports ('includeCSS' option)", async () => {
 		const alias = {
 			'b': path.join(__dirname, 'fixtures/css/b.css'),
