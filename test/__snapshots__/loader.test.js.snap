@@ -307,19 +307,6 @@ exports[`loader should resolve relative imports: output 1`] = `
 "
 `;
 
-exports[`loader should resolve relative imports: output 2`] = `
-".a-color {
-  color: #aaa;
-}
-.b-color {
-  color: #bbb;
-}
-.c-color {
-  color: #ccc;
-}
-"
-`;
-
 exports[`loader should resolve tilde paths: output 1`] = `
 ".nib {
   background: linear-gradient(to bottom, #fff, #000);
@@ -373,39 +360,7 @@ exports[`loader should trigger 'beforeCompile' callback: output 1`] = `
 "
 `;
 
-exports[`loader should trigger 'beforeCompile' callback: output 2`] = `
-".a {
-  color: #aaa;
-}
-.b {
-  color: #bbb;
-}
-.c {
-  color: #ccc;
-}
-"
-`;
-
 exports[`loader should work with vue component files: output 1`] = `
-"body {
-  color: rgba(0,255,255,0.5);
-}
-.a {
-  color: #aaa;
-}
-.b {
-  color: #bbb;
-}
-.c {
-  color: #ccc;
-}
-h1 {
-  color: #c04f82;
-}
-"
-`;
-
-exports[`loader should work with vue files: output 1`] = `
 "body {
   color: rgba(0,255,255,0.5);
 }
