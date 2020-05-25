@@ -55,8 +55,15 @@ describe("loader", () => {
 	})
 
 	it("should allow using plugins ('use' option)", async () => {
+		// import in stylesheet
 		check(await compile('use.styl', {
 			use: nib()
+		}))
+
+		// import in loader
+		check(await compile('nibTest.styl', {
+			use: nib(),
+			import: 'nib',
 		}))
 	})
 
@@ -88,19 +95,6 @@ describe("loader", () => {
 		check(await compile('define.styl', {
 			define,
 			defineRaw: false,
-		}))
-	})
-
-	it("should allow toggling vendor prefixes ('vendors' option)", async () => {
-		// vendors disabled by default
-		check(await compile('vendors.styl', {
-			use: nib()
-		}))
-
-		// vendors enabled
-		check(await compile('vendors.styl', {
-			use: nib(),
-			vendors: true,
 		}))
 	})
 
@@ -159,6 +153,16 @@ describe("loader", () => {
 		check(await compile('importCSS.styl', {
 			alias,
 			includeCSS: true,
+		}))
+	})
+
+	it("should allow toggling vendor prefixes ('vendors' option)", async () => {
+		// vendors disabled by default
+		check(await compile('vendors.styl'))
+
+		// vendors enabled
+		check(await compile('vendors.styl', {
+			vendors: true,
 		}))
 	})
 
