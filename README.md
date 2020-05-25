@@ -73,13 +73,13 @@ module.exports = {
     alias: {
       // A standard alias that matches the first segment of an import path
       // Note: Tilde (~) is not required, but is convention for stylesheet aliases
-      '~styl': path.join(__dirname, 'src/styl'),
       // Maps @import '~styl/*' to '/path/to/src/styl/*'
+      '~styl': path.join(__dirname, 'src/styl'),
 
       // An "exact match" alias (i.e. will only match @import 'mixins')
       // @see https://webpack.js.org/configuration/resolve/#resolvealias
-      'mixins$': path.join(__dirname, 'src/styl/mixins'),
       // Maps @import 'mixins' to '/path/to/src/styl/mixins'
+      'mixins$': path.join(__dirname, 'src/styl/mixins'),
     },
   },
 
