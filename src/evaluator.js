@@ -14,10 +14,14 @@ import {getAliasList, resolveTildePath} from './util'
 export default function getAliasEvaluator(context, aliases, resolveTilde) {
 	let aliasList = null
 
-	function resolveAlias(importPath, filePath) {
+	function resolveAlias(importPath) {
 		const firstChar = importPath[0]
 
 		if (aliases) {
+			if (firstChar === '.' || firstChar === '/' || path.isAbsolute(importPath)) {
+				return importPath
+			}
+
 			if (aliasList === null) {
 				aliasList = getAliasList(aliases)
 			}
@@ -44,7 +48,7 @@ export default function getAliasEvaluator(context, aliases, resolveTilde) {
 			const node = this.visit(imported.path).first
 
 			if (typeof node.string === 'string' && node.string !== '') {
-				node.string = resolveAlias(node.string, node.filename)
+				node.string = resolveAlias(node.string)
 			}
 
 			return super.visitImport(imported)
