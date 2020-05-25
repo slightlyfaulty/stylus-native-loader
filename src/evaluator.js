@@ -2,31 +2,20 @@ import path from 'path'
 
 import Evaluator from 'stylus/lib/visitor/evaluator'
 
+import {getAliasList, resolveTildePath} from './util'
+
 /**
+ * @param {Object} context
  * @param {Object|false} aliases
  * @param {boolean} resolveTilde
  *
  * @returns {Function<AliasEvaluator>|boolean}
  */
-export default function getAliasEvaluator(aliases, resolveTilde) {
-	let nodeModulesPath = null
+export default function getAliasEvaluator(context, aliases, resolveTilde) {
 	let aliasList = null
 
-	function resolveAlias(node) {
-		const importPath = node.string
+	function resolveAlias(importPath, filePath) {
 		const firstChar = importPath[0]
-
-		if (firstChar === '/') {
-			return importPath
-		}
-
-		if (nodeModulesPath === null) {
-			nodeModulesPath = getNodeModulesPath()
-		}
-
-		if (node.filename.indexOf(nodeModulesPath) === 0) {
-			return importPath
-		}
 
 		if (aliases) {
 			if (aliasList === null) {
@@ -38,13 +27,13 @@ export default function getAliasEvaluator(aliases, resolveTilde) {
 					return entry.path
 				}
 				else if (!entry.exact && importPath.indexOf(entry.aliasRoot) === 0) {
-					return path.join(entry.path, importPath.slice(entry.aliasRoot.length))
+					return path.resolve(entry.path, importPath.slice(entry.aliasRoot.length))
 				}
 			}
 		}
 
 		if (resolveTilde && firstChar === '~') {
-			return path.join(nodeModulesPath, importPath.slice(1))
+			return resolveTildePath(importPath)
 		}
 
 		return importPath
@@ -55,40 +44,10 @@ export default function getAliasEvaluator(aliases, resolveTilde) {
 			const node = this.visit(imported.path).first
 
 			if (typeof node.string === 'string' && node.string !== '') {
-				node.string = resolveAlias(node)
+				node.string = resolveAlias(node.string, node.filename)
 			}
 
 			return super.visitImport(imported)
 		}
 	}
-}
-
-function getNodeModulesPath() {
-	return path.join(process.cwd(), 'node_modules')
-}
-
-function getAliasList(aliases) {
-	const aliasList = []
-
-	if (typeof aliases !== 'object') {
-		return aliasList
-	}
-
-	for (let [alias, aliasPath] of Object.entries(aliases)) {
-		let exact = false
-
-		if (alias.slice(-1) === '$') {
-			exact = true
-			alias = alias.slice(0, -1)
-		}
-
-		aliasList.push({
-			alias,
-			aliasRoot: alias + '/',
-			path: aliasPath.replace(/[/\\]+$/, ''),
-			exact,
-		})
-	}
-
-	return aliasList
 }

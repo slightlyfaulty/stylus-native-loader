@@ -162,15 +162,6 @@ module.exports = {
               defineRaw: false,
 
               /**
-               * Toggle built-in Stylus/Nib vendor prefixing.
-               * Disabled by default (prefer PostCSS Autoprefixer).
-               *
-               * @type {boolean}
-               * @default false
-               */
-              vendors: true,
-
-              /**
                * Resolve relative url()'s inside imported files.
                *
                * @see https://stylus-lang.com/docs/js.html#stylusresolveroptions
@@ -200,8 +191,10 @@ module.exports = {
               },
 
               /**
-               * Resolve non-alias paths beginning with `~` to `node_modules`.
-               * E.g. @import '~nib' becomes '/path/to/node_modules/nib'.
+               * Non-alias imports beginning with tilde (~) are resolved
+               * using `require.resolve()` to find the module's base path.
+               *
+               * @example @import '~nib' resolves to '/path/to/node_modules/nib'
                *
                * @type {boolean}
                * @default true

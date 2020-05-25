@@ -4,6 +4,7 @@ import {promises as fs} from 'fs'
 import {getOptions} from 'loader-utils'
 import stylus from 'stylus'
 
+import {isObject, castArray} from './util'
 import getAliasEvaluator from './evaluator'
 
 export default function stylusLoader(source) {
@@ -94,7 +95,7 @@ export default function stylusLoader(source) {
 	}
 
 	if (aliases || resolveTilde) {
-		styl.set('Evaluator', getAliasEvaluator(aliases, resolveTilde))
+		styl.set('Evaluator', getAliasEvaluator(this, aliases, resolveTilde))
 	}
 
 	// keep track of imported files (used by Stylus CLI watch mode)
@@ -138,24 +139,4 @@ export default function stylusLoader(source) {
 		// donesies :)
 		callback(null, css, styl.sourcemap)
 	})
-}
-
-/**
- * @returns {boolean}
- */
-function isObject(value) {
-	return typeof value === 'object' && value !== null
-}
-
-/**
- * @returns {Array}
- */
-function castArray(value) {
-	if (value == null) {
-		return []
-	} else if (Array.isArray(value)) {
-		return value
-	} else {
-		return [value]
-	}
 }
