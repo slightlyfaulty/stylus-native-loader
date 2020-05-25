@@ -15,7 +15,6 @@
     "start": "npm run build -- -w",
     "build": "del-cli dist && cross-env NODE_ENV=production babel src -d dist --copy-files",
     "test": "cross-env NODE_ENV=test jest",
-    "test:coverage": "npm run test -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
     "benchmark": "babel-node --no-deprecation test/benchmark.js",
     "release": "standard-version"
   },
