@@ -29,7 +29,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 - It disables all built-in vendor prefixing (by default). Vendor prefixing should be done with [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer#webpack) or similar.
 - It uses raw defines (by default), allowing JS object literals to be passed via options and converted to Stylus hashes.
 - It automatically suppresses Stylus Node.js compatibility warnings (see [below](#stylus-warnings-since-node-v14) for more details).
-- Stylus is awesome ❤️ and it deserves an awesome webpack loader.
+- Stylus is awesome ❤️ and it deserves an awesome Webpack loader.
 
 ## Benchmarks
 
