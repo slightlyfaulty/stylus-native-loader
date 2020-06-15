@@ -1,10 +1,7 @@
 import path from 'path'
 import {promises as fs} from 'fs'
 
-import {getOptions} from 'loader-utils'
-import stylus from 'stylus'
-
-import {isObject, castArray} from './util'
+import {stylus, suppressWarnings} from './stylus-compat'
 import getAliasEvaluator from './evaluator'
 import {getOptions, isObject, castArray} from './util'
 
@@ -52,6 +49,27 @@ export default function stylusLoader(source) {
 	// disable all built-in vendor prefixes by default (prefer autoprefixer)
 	if (options.vendors !== true) {
 		styl.import(path.join(__dirname, '../lib/vendors-official.styl'))
+	}
+
+	// import of plugins passed as strings (while optionally suppressing Stylus warnings)
+	if (options.use.length) {
+		const plugins = Object.entries(options.use).filter(p => typeof p[1] === 'string')
+
+		if (plugins.length) {
+			// suppress warnings caused by Stylus in Node >= 14
+			suppressWarnings(() => {
+				for (const [i, name] of plugins) {
+					try {
+						options.use[i] = require(name)()
+					} catch (err) {
+						options.use.splice(i, 1)
+
+						err.message = `Stylus plugin '${name}' failed to load. Are you sure it's installed?`
+						this.emitWarning(err)
+					}
+				}
+			})
+		}
 	}
 
 	// add custom include paths

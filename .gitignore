@@ -5,8 +5,9 @@ npm-debug.log*
 /coverage
 /dist
 /local
-/reports
 /node_modules
+/reports
+/sandbox
 .DS_Store
 Thumbs.db
 .directory

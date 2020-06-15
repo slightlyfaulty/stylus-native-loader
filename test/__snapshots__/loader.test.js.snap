@@ -182,6 +182,26 @@ exports[`loader should allow using plugins ('use' option): output 2`] = `
 "
 `;
 
+exports[`loader should allow using plugins ('use' option): output 3`] = `
+".nib {
+  background: linear-gradient(to bottom, #fff, #000);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+"
+`;
+
+exports[`loader should allow using plugins ('use' option): output 4`] = `
+".nib {
+  background: linear-gradient(to bottom, #fff, #000);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+"
+`;
+
 exports[`loader should generate source maps accordingly: output 1`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",

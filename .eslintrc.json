@@ -10,6 +10,8 @@
     "prefer-destructuring": "off",
     "no-else-return": "off",
     "consistent-return": "off",
-    "prefer-template": "off"
+    "prefer-template": "off",
+    "global-require": "off",
+    "import/no-dynamic-require": "off"
   }
 }

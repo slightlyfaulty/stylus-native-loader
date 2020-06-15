@@ -42,7 +42,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 | **[stylus-loader](https://github.com/shama/stylus-loader)**  | 85.62ms  | 128.05ms | **104.39ms** | +29.73% |
 | **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 117.32ms | 198.78ms | **143.10ms** | +77.83% |
 
-## Getting Started
+## Getting started
 
 To begin, install `stylus-native-loader` and `stylus`:
 
@@ -67,14 +67,29 @@ module.exports = {
 }
 ```
 
-## Configuration by Example
+## Stylus warnings since Node v14
+
+If you're using Node.js v14 or later, you may have noticed the annoying warnings caused by Stylus.
+
+```
+Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+```
+
+Look familiar? For some, it's a bearable annoyance. For others, it's the last nail in the coffin of Stylus and its "sporadic" maintenance over the past few years. I for one would like to keep Stylus alive, at least for a while longer. If you're reading this, you're probably not ready to jump ship either.
+
+Unfortunately, not a hell of a lot can be done until stylus/stylus#2538 is merged. Until then, if you're using stylus-native-loader, these warnings will be **automatically suppressed** (by default).
+
+If you're using Stylus plugins that import Stylus themselves (like [nib](https://stylus.github.io/nib/)), be sure to `use` them as strings instead of importing them directly in your webpack config. This allows stylus-native-loader to suppress warnings for those plugins too.
+
+If for some reason you don't want these useless warnings suppressed, you can set the environment variable `STYLUS_NO_COMPAT = 1`.
+
+## Configuration by example
 
 Below is an example **webpack.config.js** using all `stylus-native-loader` options. None are required.
 
 ```js
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const nib = require('nib')
 
 module.exports = {
   // Any "original source" option excluding "eval" enables source map generation
@@ -119,27 +134,13 @@ module.exports = {
             loader: 'stylus-native-loader',
             options: {
               /**
-               * Toggle/configure source map generation.
-               * Set according to `devtool` config value by default.
+               * Specify Stylus plugins to use. Plugins may be passed as
+               * strings instead of importing them in your Webpack config.
                *
-               * @see https://stylus-lang.com/docs/sourcemaps.html
-               *
-               * @type {boolean|Object}
-               * @default `devtool`|false
-               */
-              sourceMap: {
-                // Toggle loading of source file contents into source map
-                content: true,
-                // All other Stylus "sourcemap" options can be set if needed
-              },
-
-              /**
-               * Specify Stylus plugins to use.
-               *
-               * @type {Function|Function[]}
+               * @type {string|Function|(string|Function)[]}
                * @default []
                */
-              use: nib(),
+              use: 'nib',
 
               /**
                * Add path(s) to the import lookup paths.
@@ -181,6 +182,14 @@ module.exports = {
               defineRaw: false,
 
               /**
+               * Include regular CSS on @import.
+               *
+               * @type {boolean}
+               * @default false
+               */
+              includeCSS: true,
+                
+              /**
                * Resolve relative url()'s inside imported files.
                *
                * @see https://stylus-lang.com/docs/js.html#stylusresolveroptions
@@ -189,14 +198,6 @@ module.exports = {
                * @default false
                */
               resolveUrl: true,
-
-              /**
-               * Include regular CSS on @import.
-               *
-               * @type {boolean}
-               * @default false
-               */
-              includeCSS: true,
 
               /**
                * Aliases used for @import and @require path resolution.
@@ -228,6 +229,21 @@ module.exports = {
                * @default false
                */
               vendors: true,
+                
+              /**
+               * Toggle/configure source map generation.
+               * Set according to `devtool` config value by default.
+               *
+               * @see https://stylus-lang.com/docs/sourcemaps.html
+               *
+               * @type {boolean|Object}
+               * @default `devtool`|false
+               */
+              sourceMap: {
+                // Toggle loading of source file contents into source map
+                content: true,
+                // All other Stylus "sourcemap" options can be set if needed
+              },
 
               /**
                * Callback that triggers right before Stylus compiles,

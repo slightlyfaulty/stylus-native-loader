@@ -65,6 +65,17 @@ describe("loader", () => {
 			use: nib(),
 			import: 'nib',
 		}))
+
+		// use string
+		check(await compile('use.styl', {
+			use: 'nib',
+		}))
+
+		// use string and import
+		check(await compile('nibTest.styl', {
+			use: 'nib',
+			import: 'nib',
+		}))
 	})
 
 	it("should allow adding include paths ('include' option)", async () => {
