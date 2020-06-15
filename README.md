@@ -23,7 +23,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 - It's [fast](#benchmarks).
 - It's compatible with Webpack 4 and 5.
 - It's actively maintained. Stylus-loader has many critical [issues](https://github.com/shama/stylus-loader/issues), with its last commit on Feb 26, 2018.
-- It doesn't do any weird/buggy magic to get Stylus working with Webpack. If it works in Stylus, it works in stylus-native-loader.
+- It doesn't do any weird/buggy magic to get Stylus working in Webpack. If it works in Stylus, it works in stylus-native-loader.
 - It supports webpack [aliases](https://webpack.js.org/configuration/resolve/#resolvealias) and has automatic tilde path resolution (e.g. `~nib` = `/path/to/node_modules/nib`).
 - It generates better source maps.
 - It disables all built-in vendor prefixing (by default). Vendor prefixing should be done with [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer#webpack) or similar.
@@ -77,11 +77,11 @@ Warning: Accessing non-existent property 'lineno' of module exports inside circu
 
 Look familiar? For some, it's a bearable annoyance. For others, it's the last nail in the coffin of Stylus and its "sporadic" maintenance over the past few years. I for one would like to keep Stylus alive, at least for a while longer. If you're reading this, you're probably not ready to jump ship either.
 
-Unfortunately, not a hell of a lot can be done until stylus/stylus#2538 is merged. Until then, if you're using stylus-native-loader, these warnings will be **automatically suppressed** (by default).
+Unfortunately, not a hell of a lot can be done until [stylus/stylus#2538](stylus/stylus#2538) is merged. Until then, if you're using stylus-native-loader, these warnings will be **automatically suppressed** (by default).
 
 If you're using Stylus plugins that import Stylus themselves (like [nib](https://stylus.github.io/nib/)), be sure to `use` them as strings instead of importing them directly in your webpack config. This allows stylus-native-loader to suppress warnings for those plugins too.
 
-If for some reason you don't want these useless warnings suppressed, you can set the environment variable `STYLUS_NO_COMPAT = 1`.
+If for some reason you don't want these warnings suppressed, you can set the environment variable `STYLUS_NO_COMPAT = 1`.
 
 ## Configuration by example
 
