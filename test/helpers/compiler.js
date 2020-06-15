@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import {createFsFromVolume, Volume} from 'memfs'
 
 export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, loader = null) {
-	loader = loader || require.resolve('../../src/cjs.js')
+	loader = loader || path.resolve(__dirname, '../../src/cjs.js')
 
 	let rules = []
 	if (config.module && config.module.rules) {
@@ -15,7 +15,7 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 	const fullConfig = {
 		mode: 'development',
 		devtool: config.devtool || false,
-		context: path.join(__dirname, '../fixtures'),
+		context: path.resolve(__dirname, '../fixtures'),
 		entry: path.resolve(__dirname, '../fixtures', fixture),
 		module: {
 			rules: [
@@ -23,7 +23,7 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 					test: /\.styl(us)?$/,
 					exclude: /node_modules/,
 					use: [
-						{loader: require.resolve('./helperLoader.js'), options: {callback}},
+						{loader: path.join(__dirname, 'helperLoader.js'), options: {callback}},
 						{loader, options: loaderOptions || {}},
 					],
 				},
