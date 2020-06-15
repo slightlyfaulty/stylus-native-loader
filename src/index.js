@@ -6,12 +6,13 @@ import stylus from 'stylus'
 
 import {isObject, castArray} from './util'
 import getAliasEvaluator from './evaluator'
+import {getOptions, isObject, castArray} from './util'
 
 export default function stylusLoader(source) {
 	const callback = this.async()
 
-	// get options passed to loader (with pre Webpack 5 compatibility)
-	const loaderOptions = this.getOptions ? this.getOptions() : getOptions(this)
+	// get options passed to loader
+	const loaderOptions = getOptions(this)
 
 	// clone loader options to avoid modifying this.query
 	const options = loaderOptions ? {...loaderOptions} : {}

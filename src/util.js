@@ -1,6 +1,19 @@
 import path from 'path'
 
 /**
+ * @param {Object} context The loader context
+ *
+ * @return {Object}
+ */
+export function getOptions(context) {
+	if (typeof context.getOptions === 'function') {
+		return context.getOptions()
+	} else {
+		return require('loader-utils').getOptions(context)
+	}
+}
+
+/**
  * @return {boolean}
  */
 export function isObject(value) {
