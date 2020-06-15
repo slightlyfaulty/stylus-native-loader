@@ -77,7 +77,7 @@ Warning: Accessing non-existent property 'lineno' of module exports inside circu
 
 Look familiar? For some, it's a bearable annoyance. For others, it's the last nail in the coffin of Stylus and its "sporadic" maintenance over the past few years. I for one would like to keep Stylus alive, at least for a while longer. If you're reading this, you're probably not ready to jump ship either.
 
-Unfortunately, not a hell of a lot can be done until [stylus/stylus#2538](stylus/stylus#2538) is merged. Until then, if you're using stylus-native-loader, these warnings will be **automatically suppressed** (by default).
+Unfortunately, not a hell of a lot can be done until [stylus/stylus#2538](https://github.com/stylus/stylus/pull/2538) is merged. Until then, if you're using stylus-native-loader, these warnings will be **automatically suppressed** (by default).
 
 If you're using Stylus plugins that import Stylus themselves (like [nib](https://stylus.github.io/nib/)), be sure to `use` them as strings instead of importing them directly in your webpack config. This allows stylus-native-loader to suppress warnings for those plugins too.
 
