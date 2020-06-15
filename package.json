@@ -23,36 +23,35 @@
     "lib"
   ],
   "peerDependencies": {
-    "stylus": "^0.54.7",
+    "stylus": "*",
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "loader-utils": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.8.4",
-    "@types/jest": "^25.1.4",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@types/jest": "^26.0.0",
     "@webpack-contrib/eslint-config-webpack": "^3.0.0",
-    "babel-jest": "^25.1.0",
+    "babel-jest": "^26.0.1",
     "cross-env": "^7.0.0",
     "del": "^5.1.0",
-    "del-cli": "^3.0.0",
+    "del-cli": "^3.0.1",
     "delay": "^4.3.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
-    "memfs": "^3.1.1",
+    "eslint": "^7.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "jest": "^26.0.1",
+    "memfs": "^3.2.0",
     "nib": "^1.1.2",
-    "standard-version": "^7.1.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "stylus-relative-loader": "^4.0.0",
-    "vue-loader": "^15.9.1",
+    "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
-    "webpack": ">=5.0.0-beta.14"
+    "webpack": "^5.0.0-beta.17"
   },
   "keywords": [
     "webpack",
