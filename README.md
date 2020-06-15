@@ -3,10 +3,11 @@
   <a href="https://webpack.js.org/"><img src="https://webpack.js.org/assets/icon-square-big.svg" alt="Webpack" title="Webpack" height="120" valign="middle"></a>
 </p>
 <p align="center">
-  <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/v/stylus-native-loader.svg?sanitize=true" alt="Version"></a>
-  <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/stylus-native-loader.svg" alt="Node.js Version"></a>
-  <a href="https://david-dm.org/slightlyfaulty/stylus-native-loader"><img src="https://david-dm.org/slightlyfaulty/stylus-native-loader.svg" alt="Dependencies"></a>
-  <a href="https://packagephobia.now.sh/result?p=stylus-native-loader"><img src="https://packagephobia.now.sh/badge?p=stylus-native-loader" alt="Size"></a>
+  <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/v/stylus-native-loader" alt="Version"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/stylus-native-loader" alt="Node.js Version"></a>
+  <a href="https://packagephobia.com/result?p=stylus-native-loader"><img src="https://packagephobia.com/badge?p=stylus-native-loader" alt="Size"></a>
+  <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/dm/stylus-native-loader" alt="Downloads"></a>
+  <a href="https://github.com/slightlyfaulty/stylus-native-loader/issues?q="><img src="https://img.shields.io/maintenance/yes/2020" alt="Maintained"></a>
 </p>
 
 # stylus-native-loader
