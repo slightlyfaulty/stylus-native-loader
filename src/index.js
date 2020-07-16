@@ -1,7 +1,8 @@
 import path from 'path'
 import {promises as fs} from 'fs'
 
-import {stylus, suppressWarnings} from './stylus-compat'
+import stylus from 'stylus'
+
 import getAliasEvaluator from './evaluator'
 import {getOptions, isObject, castArray} from './util'
 
@@ -51,24 +52,18 @@ export default function stylusLoader(source) {
 		styl.import(path.join(__dirname, '../lib/vendors-official.styl'))
 	}
 
-	// import of plugins passed as strings (while optionally suppressing Stylus warnings)
+	// import of plugins passed as strings
 	if (options.use.length) {
-		const plugins = Object.entries(options.use).filter(p => typeof p[1] === 'string')
-
-		if (plugins.length) {
-			// suppress warnings caused by Stylus in Node >= 14
-			suppressWarnings(() => {
-				for (const [i, name] of plugins) {
-					try {
-						options.use[i] = require(name)()
-					} catch (err) {
-						options.use.splice(i, 1)
-
-						err.message = `Stylus plugin '${name}' failed to load. Are you sure it's installed?`
-						this.emitWarning(err)
-					}
+		for (const [i, plugin] of Object.entries(options.use)) {
+			if (typeof plugin === 'string') {
+				try {
+					options.use[i] = require(plugin)()
+				} catch (err) {
+					options.use.splice(i, 1)
+					err.message = `Stylus plugin '${plugin}' failed to load. Are you sure it's installed?`
+					this.emitWarning(err)
 				}
-			})
+			}
 		}
 	}
 
@@ -155,7 +150,7 @@ export default function stylusLoader(source) {
 			}
 		}
 
-		// donesies :)
+		// profit
 		callback(null, css, styl.sourcemap)
 	})
 }
