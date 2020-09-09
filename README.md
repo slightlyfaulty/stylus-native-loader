@@ -18,6 +18,8 @@ Unlike other Stylus loaders available that make use of Webpack's resolver for im
 
 The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with Webpack alias support) 🥳
 
+> **Update:** The Webpack team has taken over maintenance of stylus-loader as the official loader for Stylus! A lot of stylus-native-loader has already been merged into the new stylus-loader. Once it's ready for prime time, this loader will likely be deprecated in favor of having one single maintained Stylus loader for the community.
+
 ## Why use this instead of [stylus-loader](https://github.com/shama/stylus-loader)?
 
 - It's [fast](#benchmarks).
