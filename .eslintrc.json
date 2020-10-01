@@ -12,6 +12,7 @@
     "consistent-return": "off",
     "prefer-template": "off",
     "global-require": "off",
-    "import/no-dynamic-require": "off"
+    "import/no-dynamic-require": "off",
+    "no-continue": "off"
   }
 }

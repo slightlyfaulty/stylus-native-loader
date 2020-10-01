@@ -228,6 +228,16 @@ module.exports = {
               },
 
               /**
+               * Toggle watching directories for changes. Useful when using
+               * wildcard imports to trigger a recompile when new files are
+               * added in watch mode.
+               *
+               * @type {boolean}
+               * @default true
+               */
+              watchDirs: true,
+
+              /**
                * Callback that triggers right before Stylus compiles,
                * allowing access to the Stylus JS API and loader context.
                * 

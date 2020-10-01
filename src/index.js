@@ -1,10 +1,10 @@
 import path from 'path'
-import {promises as fs} from 'fs'
+import { promises as fs } from 'fs'
 
 import stylus from 'stylus'
 
 import getAliasEvaluator from './evaluator'
-import {getOptions, isObject, castArray} from './util'
+import { getOptions, isObject, castArray } from './util'
 
 export default function stylusLoader(source) {
 	const callback = this.async()
@@ -13,7 +13,7 @@ export default function stylusLoader(source) {
 	const loaderOptions = getOptions(this)
 
 	// clone loader options to avoid modifying this.query
-	const options = loaderOptions ? {...loaderOptions} : {}
+	const options = loaderOptions ? { ...loaderOptions } : {}
 
 	// access Webpack config
 	const webpackConfig = this._compilation && isObject(this._compilation.options) ? this._compilation.options : {}
@@ -130,6 +130,8 @@ export default function stylusLoader(source) {
 			return callback(err)
 		}
 
+		const watchingDirs = {}
+
 		// add all source files as dependencies
 		if (options._imports.length) {
 			for (const importData of options._imports) {
@@ -138,6 +140,15 @@ export default function stylusLoader(source) {
 				}
 
 				this.addDependency(importData.path)
+
+				if (options.watchDirs !== false) {
+					const dir = path.basename(importData.path)
+
+					if (!(dir in watchingDirs)) {
+						this.addContextDependency(dir)
+						watchingDirs[dir] = true
+					}
+				}
 			}
 		}
 
@@ -157,7 +168,7 @@ export default function stylusLoader(source) {
 			}
 		}
 
-		// profit
+		// profit!
 		callback(null, css, styl.sourcemap)
 	})
 }
