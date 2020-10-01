@@ -123,13 +123,20 @@ export default function stylusLoader(source) {
 	// let stylus do its magic
 	styl.render(async (err, css) => {
 		if (err) {
-			this.addDependency(err.filename)
+			if (err.filename) {
+				this.addDependency(err.filename)
+			}
+
 			return callback(err)
 		}
 
 		// add all source files as dependencies
 		if (options._imports.length) {
 			for (const importData of options._imports) {
+				if (!importData || !importData.path) {
+					continue
+				}
+
 				this.addDependency(importData.path)
 			}
 		}
