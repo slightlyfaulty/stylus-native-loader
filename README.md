@@ -18,19 +18,15 @@ Unlike other Stylus loaders available that make use of Webpack's resolver for im
 
 The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with Webpack alias support) 🥳
 
-> **Update:** The Webpack team has taken over maintenance of stylus-loader as the official loader for Stylus! A lot of stylus-native-loader has already been merged into the new stylus-loader. Once it's ready for prime time, this loader will likely be deprecated in favor of having one single maintained Stylus loader for the community.
-
 ## Why use this instead of [stylus-loader](https://github.com/shama/stylus-loader)?
 
 - It's [fast](#benchmarks).
 - It's compatible with Webpack 4 and 5.
-- It's actively maintained. Stylus-loader has many critical [issues](https://github.com/shama/stylus-loader/issues), with its last commit on Feb 26, 2018.
-- It doesn't do any weird/buggy magic to get Stylus working in Webpack. If it works in Stylus, it works in stylus-native-loader.
-- It supports webpack [aliases](https://webpack.js.org/configuration/resolve/#resolvealias) and has automatic tilde path resolution (e.g. `~nib` = `/path/to/node_modules/nib`).
+- It lets Stylus resolve its own imports, which is much more flexible than Webpack's resolver.
+- It supports Webpack [aliases](https://webpack.js.org/configuration/resolve/#resolvealias) and has automatic tilde path resolution (e.g. `~nib` = `/path/to/node_modules/nib`).
 - It generates better source maps.
-- It disables all built-in vendor prefixing (by default). Vendor prefixing should be done with [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer#webpack) or similar.
+- It disables all built-in vendor prefixing (by default) in favor of [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer#webpack) or similar.
 - It uses raw defines (by default), allowing JS object literals to be passed via options and converted to Stylus hashes.
-- Stylus is awesome ❤️ and it deserves an awesome Webpack loader.
 
 ## Benchmarks
 
@@ -38,10 +34,10 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 |                                                              | Min      | Max      | Average      | Diff %  |
 | ------------------------------------------------------------ | -------- | -------- | ------------ | ------- |
-| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 72.67ms  | 104.75ms | **80.47ms**  |         |
-| **stylus-native-loader**                                     | 79.61ms  | 104.26ms | **86.41ms**  | +7.38%  |
-| **[stylus-loader](https://github.com/shama/stylus-loader)**  | 85.62ms  | 128.05ms | **104.39ms** | +29.73% |
-| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 117.32ms | 198.78ms | **143.10ms** | +77.83% |
+| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 73.41ms  | 102.84ms | **83.25ms**  |         |
+| **stylus-native-loader**                                     | 83.03ms  | 104.99ms | **90.80ms**  | +9.06%  |
+| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 125.02ms | 154.99ms | **144.40ms** | +73.45% |
+| **[stylus-loader](https://github.com/shama/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09% |
 
 ## Getting started
 
@@ -153,7 +149,8 @@ module.exports = {
                * @default {}
                */
               define: {
-                '$development': process.env.NODE_ENV === 'development'
+                '$development': process.env.NODE_ENV === 'development',
+                '$hashvars': { foo: 'bar', bar: 'baz' },
               },
 
               /**
@@ -164,7 +161,7 @@ module.exports = {
                * @type {boolean}
                * @default true
                */
-              defineRaw: false,
+              defineRaw: true,
 
               /**
                * Include regular CSS on @import.
@@ -172,7 +169,7 @@ module.exports = {
                * @type {boolean}
                * @default false
                */
-              includeCSS: true,
+              includeCSS: false,
                 
               /**
                * Resolve relative url()'s inside imported files.
@@ -182,7 +179,7 @@ module.exports = {
                * @type {boolean|Object}
                * @default false
                */
-              resolveUrl: true,
+              resolveUrl: false,
 
               /**
                * Aliases used for @import and @require path resolution.
@@ -213,7 +210,7 @@ module.exports = {
                * @type {boolean}
                * @default false
                */
-              vendors: true,
+              vendors: false,
                 
               /**
                * Toggle/configure source map generation.
@@ -233,6 +230,9 @@ module.exports = {
               /**
                * Callback that triggers right before Stylus compiles,
                * allowing access to the Stylus JS API and loader context.
+               * 
+               * Note: This is experimental and may prevent proper caching
+               * in Webpack. Use at your own risk.
                *
                * @see https://stylus-lang.com/docs/js.html
                *
@@ -244,8 +244,8 @@ module.exports = {
                * @param {Object} options The unified stylus options object
                */
               beforeCompile(renderer, context, options) {
-                renderer.define('expression', {foo: 'bar', bar: 'baz'})
-                renderer.define('hash', {foo: 'bar', bar: 'baz'}, true)
+                renderer.define('expression', { foo: 'bar', bar: 'baz' })
+                renderer.define('hash', { foo: 'bar', bar: 'baz' }, true)
               },
 
               /**
