@@ -142,7 +142,7 @@ export default function stylusLoader(source) {
 				this.addDependency(importData.path)
 
 				if (options.watchDirs !== false) {
-					const dir = path.basename(importData.path)
+					const dir = path.dirname(importData.path)
 
 					if (!(dir in watchingDirs)) {
 						this.addContextDependency(dir)

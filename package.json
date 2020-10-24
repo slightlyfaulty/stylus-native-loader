@@ -1,6 +1,6 @@
 {
   "name": "stylus-native-loader",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A super fast Stylus loader for Webpack that leverages the built-in power of Stylus",
   "license": "MIT",
   "author": "Saul Fautley <saulfautley@gmail.com>",
