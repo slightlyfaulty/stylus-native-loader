@@ -18,13 +18,14 @@ Unlike other Stylus loaders available that make use of Webpack's resolver for im
 
 The result is a highly configurable, lean Stylus loader with near-baseline build speeds and unhindered @import/require functionality (with Webpack alias support) 🥳
 
-## Why use this instead of [stylus-loader](https://github.com/shama/stylus-loader)?
+## Why use this instead of [stylus-loader](https://github.com/webpack-contrib/stylus-loader)?
 
-- It's [fast](#benchmarks).
-- It's compatible with Webpack 4 and 5.
-- It lets Stylus resolve its own imports, which is much more flexible than Webpack's resolver.
+- It's [fast af](#benchmarks).
+- It's fully compatible with Webpack 4 and 5.
+- It uses Stylus native [imports](https://stylus-lang.com/docs/import.html), which are extremely fast and flexible.
 - It supports Webpack [aliases](https://webpack.js.org/configuration/resolve/#resolvealias) and has automatic tilde path resolution (e.g. `~nib` = `/path/to/node_modules/nib`).
-- It generates better source maps.
+- It generates better source maps with optional content.
+- It watches entire directories for changes, e.g. when adding new files with [glob imports](https://stylus-lang.com/docs/import.html#file-globbing).
 - It disables all built-in vendor prefixing (by default) in favor of [PostCSS Autoprefixer](https://github.com/postcss/autoprefixer#webpack) or similar.
 - It uses raw defines (by default), allowing JS object literals to be passed via options and converted to Stylus hashes.
 
@@ -37,7 +38,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 | **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 73.41ms  | 102.84ms | **83.25ms**  |         |
 | **stylus-native-loader**                                     | 83.03ms  | 104.99ms | **90.80ms**  | +9.06%  |
 | **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 125.02ms | 154.99ms | **144.40ms** | +73.45% |
-| **[stylus-loader](https://github.com/shama/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09% |
+| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09% |
 
 ## Getting started
 
@@ -228,9 +229,8 @@ module.exports = {
               },
 
               /**
-               * Toggle watching directories for changes. Useful when using
-               * wildcard imports to trigger a recompile when new files are
-               * added in watch mode.
+               * Toggle watching directories for changes. Allows new files to
+               * be detected in watch mode when using glob imports.
                *
                * @type {boolean}
                * @default true
