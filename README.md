@@ -20,7 +20,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 ## Why use this instead of [stylus-loader](https://github.com/webpack-contrib/stylus-loader)?
 
-- It's [fast af](#benchmarks).
+- It's [really fast](#benchmarks).
 - It's fully compatible with Webpack 4 and 5.
 - It uses Stylus native [imports](https://stylus-lang.com/docs/import.html), which are extremely fast and flexible.
 - It supports Webpack [aliases](https://webpack.js.org/configuration/resolve/#resolvealias) and has automatic tilde path resolution (e.g. `~nib` = `/path/to/node_modules/nib`).
