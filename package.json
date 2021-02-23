@@ -1,6 +1,6 @@
 {
   "name": "stylus-native-loader",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "A super fast Stylus loader for Webpack that leverages the built-in power of Stylus",
   "license": "MIT",
   "author": "Saul Fautley <saulfautley@gmail.com>",
@@ -26,29 +26,29 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@types/jest": "^26.0.19",
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/node": "^7.13.0",
+    "@babel/preset-env": "^7.13.5",
+    "@types/jest": "^26.0.20",
     "@webpack-contrib/eslint-config-webpack": "^3.0.0",
     "babel-jest": "^26.6.3",
     "cross-env": "^7.0.3",
     "del": "^6.0.0",
     "del-cli": "^3.0.1",
-    "delay": "^4.4.0",
-    "eslint": "^7.16.0",
+    "delay": "^5.0.0",
+    "eslint": "^7.20.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
     "memfs": "^3.2.0",
     "nib": "^1.1.2",
     "stylus": "^0.54.8",
-    "stylus-loader": "^4.3.1",
+    "stylus-loader": "^5.0.0",
     "stylus-relative-loader": "^4.0.0",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.11.0",
-    "webpack-cli": "^4.3.0"
+    "webpack": "^5.24.0",
+    "webpack-cli": "^4.5.0"
   },
   "resolutions": {
     "nib/stylus": "0.54.8"
