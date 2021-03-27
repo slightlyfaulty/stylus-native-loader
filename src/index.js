@@ -78,12 +78,16 @@ export default function stylusLoader(source) {
 	}
 
 	// enable resolver for relative urls
-	if (options.resolveUrl) {
-		if (!isObject(options.resolveUrl)) {
-			options.resolveUrl = {}
+	let resolveUrl = options.resolveURL || options.resolveUrl
+
+	if (resolveUrl) {
+		if (resolveUrl === 'nocheck') {
+			resolveUrl = { nocheck: true }
+		} else if (!isObject(resolveUrl)) {
+			resolveUrl = {}
 		}
 
-		styl.define('url', stylus.resolver(options.resolveUrl))
+		styl.define('url', stylus.resolver(resolveUrl))
 	}
 
 	// define global variables/functions

@@ -177,10 +177,10 @@ module.exports = {
                *
                * @see https://stylus-lang.com/docs/js.html#stylusresolveroptions
                *
-               * @type {boolean|Object}
+               * @type {boolean|Object|'nocheck'}
                * @default false
                */
-              resolveUrl: false,
+              resolveUrl: 'nocheck',
 
               /**
                * Aliases used for @import and @require path resolution.

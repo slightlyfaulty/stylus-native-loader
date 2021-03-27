@@ -117,7 +117,7 @@ describe("loader", () => {
 
 		// resolve urls without checking file existence
 		check(await compile('resolveUrl.styl', {
-			resolveUrl: {nocheck: true}
+			resolveUrl: 'nocheck'
 		}))
 
 		// don't resolve urls
@@ -199,9 +199,7 @@ describe("loader", () => {
 
 	it("should resolve glob imports", async () => {
 		check(await compile('globs/index.styl', {
-			alias: {
-				'!': '/some/random/path'
-			}
+			resolveUrl: true, // test with Stylus resolveURL glob bug
 		}))
 	})
 

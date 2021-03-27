@@ -2,7 +2,7 @@ import path from 'path'
 
 import Evaluator from 'stylus/lib/visitor/evaluator'
 
-import {getAliasList, resolveTildePath} from './util'
+import { getAliasList, resolveTildePath } from './util'
 
 /**
  * @param {Object} context
@@ -51,7 +51,16 @@ export default function getAliasEvaluator(context, aliases, resolveTilde) {
 				node.string = resolveAlias(node.string)
 			}
 
-			return super.visitImport(imported)
+			// fix Stylus glob bug when resolveURL is true (see https://github.com/slightlyfaulty/stylus-native-loader/issues/2)
+			if (this.resolveURL && !this.resolveURL.nocheck) {
+				const resolveUrl = this.resolveURL
+				this.resolveURL = typeof resolveUrl === 'object' ? { ...resolveUrl, nocheck: true } : { nocheck: true }
+				const block = super.visitImport(imported)
+				this.resolveURL = resolveUrl
+				return block
+			} else {
+				return super.visitImport(imported)
+			}
 		}
 	}
 }

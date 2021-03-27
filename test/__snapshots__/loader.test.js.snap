@@ -354,6 +354,15 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 1`
 .fake {
   background-image: url(\\"fake.png\\");
 }
+.nested1 {
+  background-image: url(\\"urls/nested/img.png\\");
+}
+.nested2 {
+  background-image: url(\\"urls/nested/img.png\\");
+}
+.nested3 {
+  background-image: url(\\"urls/img.png\\");
+}
 "
 `;
 
@@ -364,6 +373,15 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 2`
 .fake {
   background-image: url(\\"urls/fake.png\\");
 }
+.nested1 {
+  background-image: url(\\"urls/nested/img.png\\");
+}
+.nested2 {
+  background-image: url(\\"urls/nested/img.png\\");
+}
+.nested3 {
+  background-image: url(\\"urls/img.png\\");
+}
 "
 `;
 
@@ -373,6 +391,15 @@ exports[`loader should resolve urls accordingly ('resolveUrl' option): output 3`
 }
 .fake {
   background-image: url(\\"fake.png\\");
+}
+.nested1 {
+  background-image: url(\\"nested/img.png\\");
+}
+.nested2 {
+  background-image: url(\\"img.png\\");
+}
+.nested3 {
+  background-image: url(\\"../img.png\\");
 }
 "
 `;
