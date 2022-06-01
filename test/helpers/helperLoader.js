@@ -1,7 +1,5 @@
-import {getOptions} from 'loader-utils'
-
 export default function helperLoader(...output) {
-	const options = getOptions(this) || {}
+	const options = this.getOptions()
 
 	if (options.callback) {
 		options.callback({

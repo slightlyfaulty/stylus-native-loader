@@ -3,7 +3,7 @@ import path from 'path'
 import stylus from 'stylus'
 import nib from 'nib'
 
-import {compile} from './helpers/compiler'
+import { compile } from './helpers/compiler'
 
 function check(stats, outputIndex = 0) {
 	expect(stats.compilation.warnings).toEqual([])

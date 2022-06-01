@@ -4,7 +4,7 @@ import path from 'path'
 import stylus from 'stylus'
 import delay from 'delay'
 
-import {getCompiler} from './helpers/compiler'
+import { getCompiler } from './helpers/compiler'
 
 const fixture = 'benchmark.styl'
 const iterations = 10

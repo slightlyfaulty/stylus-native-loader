@@ -1,7 +1,7 @@
 import path from 'path'
 
 import webpack from 'webpack'
-import {createFsFromVolume, Volume} from 'memfs'
+import { createFsFromVolume, Volume } from 'memfs'
 
 export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, loader = null) {
 	loader = loader || path.resolve(__dirname, '../../src/cjs.js')
