@@ -128,7 +128,7 @@ export default function stylusLoader(source) {
 	styl.render(async (err, css) => {
 		if (err) {
 			if (err.filename) {
-				this.addDependency(err.filename)
+				this.addDependency(path.normalize(err.filename))
 			}
 
 			return callback(err)
@@ -143,13 +143,13 @@ export default function stylusLoader(source) {
 					continue
 				}
 
-				this.addDependency(importData.path)
+				this.addDependency(path.normalize(importData.path))
 
 				if (options.watchDirs !== false) {
 					const dir = path.dirname(importData.path)
 
 					if (!(dir in watchingDirs)) {
-						this.addContextDependency(dir)
+						this.addContextDependency(path.normalize(dir))
 						watchingDirs[dir] = true
 					}
 				}
