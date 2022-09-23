@@ -49,14 +49,14 @@ exports[`loader should allow importing files ('import' option): output 1`] = `
 `;
 
 exports[`loader should allow toggling CSS file imports ('includeCSS' option): output 1`] = `
-"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+"@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 @import 'css/a.css';
 @import 'b';
 "
 `;
 
 exports[`loader should allow toggling CSS file imports ('includeCSS' option): output 2`] = `
-"@import url(\\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap\\");
+"@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 .a {
 	color: #aaa;
 }
@@ -203,17 +203,17 @@ exports[`loader should allow using plugins ('use' option): output 4`] = `
 `;
 
 exports[`loader should generate source maps accordingly: output 1`] = `
-Object {
+{
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
-  "names": Array [],
+  "names": [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
-  "sources": Array [
+  "sources": [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
     "test/fixtures/imports/c.styl",
   ],
-  "sourcesContent": Array [
+  "sourcesContent": [
     "$color = red
 
 color(color)
@@ -235,17 +235,17 @@ body
 `;
 
 exports[`loader should generate source maps accordingly: output 2`] = `
-Object {
+{
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
-  "names": Array [],
+  "names": [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
-  "sources": Array [
+  "sources": [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
     "test/fixtures/imports/c.styl",
   ],
-  "sourcesContent": Array [
+  "sourcesContent": [
     "$color = red
 
 color(color)
@@ -267,11 +267,11 @@ body
 `;
 
 exports[`loader should generate source maps accordingly: output 3`] = `
-Object {
+{
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
-  "names": Array [],
+  "names": [],
   "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
-  "sources": Array [
+  "sources": [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
     "test/fixtures/imports/b.styl",
@@ -349,57 +349,57 @@ exports[`loader should resolve tilde paths: output 1`] = `
 
 exports[`loader should resolve urls accordingly ('resolveUrl' option): output 1`] = `
 ".test {
-  background-image: url(\\"urls/img.png\\");
+  background-image: url("urls/img.png");
 }
 .fake {
-  background-image: url(\\"fake.png\\");
+  background-image: url("fake.png");
 }
 .nested1 {
-  background-image: url(\\"urls/nested/img.png\\");
+  background-image: url("urls/nested/img.png");
 }
 .nested2 {
-  background-image: url(\\"urls/nested/img.png\\");
+  background-image: url("urls/nested/img.png");
 }
 .nested3 {
-  background-image: url(\\"urls/img.png\\");
+  background-image: url("urls/img.png");
 }
 "
 `;
 
 exports[`loader should resolve urls accordingly ('resolveUrl' option): output 2`] = `
 ".test {
-  background-image: url(\\"urls/img.png\\");
+  background-image: url("urls/img.png");
 }
 .fake {
-  background-image: url(\\"urls/fake.png\\");
+  background-image: url("urls/fake.png");
 }
 .nested1 {
-  background-image: url(\\"urls/nested/img.png\\");
+  background-image: url("urls/nested/img.png");
 }
 .nested2 {
-  background-image: url(\\"urls/nested/img.png\\");
+  background-image: url("urls/nested/img.png");
 }
 .nested3 {
-  background-image: url(\\"urls/img.png\\");
+  background-image: url("urls/img.png");
 }
 "
 `;
 
 exports[`loader should resolve urls accordingly ('resolveUrl' option): output 3`] = `
 ".test {
-  background-image: url(\\"img.png\\");
+  background-image: url("img.png");
 }
 .fake {
-  background-image: url(\\"fake.png\\");
+  background-image: url("fake.png");
 }
 .nested1 {
-  background-image: url(\\"nested/img.png\\");
+  background-image: url("nested/img.png");
 }
 .nested2 {
-  background-image: url(\\"img.png\\");
+  background-image: url("img.png");
 }
 .nested3 {
-  background-image: url(\\"../img.png\\");
+  background-image: url("../img.png");
 }
 "
 `;

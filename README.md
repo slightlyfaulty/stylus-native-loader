@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://stylus-lang.com/"><img src="https://stylus-lang.com/img/stylus-logo.svg" alt="Stylus" title="Stylus" height="80" valign="middle"></a>
+  <a href="https://stylus-lang.com/"><img src="https://stylus-lang.com/logo.svg" alt="Stylus" title="Stylus" height="120" valign="middle"></a>
   <a href="https://webpack.js.org/"><img src="https://webpack.js.org/assets/icon-square-big.svg" alt="Webpack" title="Webpack" height="120" valign="middle"></a>
 </p>
 <p align="center">
@@ -45,9 +45,7 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 To begin, install `stylus-native-loader` and `stylus`:
 
 ```sh
-yarn add -D stylus-native-loader stylus
-# or
-npm i -D stylus-native-loader stylus
+pnpm i -D stylus-native-loader stylus
 ```
 
 Then add the loader to your **webpack.config.js**. For example, a minimal configuration might look like this:
