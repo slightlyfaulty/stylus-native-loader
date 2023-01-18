@@ -110,7 +110,7 @@ async function runBenchmarks() {
 		}
 
 		if (result !== results[0]) {
-			table[result.loader]['Diff %'] = '+' + (result.ave / results[0].ave * 100 - 100).toFixed(2) + '%'
+			table[result.loader]['Overhead'] = '+' + (result.ave / results[0].ave * 100 - 100).toFixed(2) + '%'
 		}
 	}
 

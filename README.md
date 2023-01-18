@@ -7,7 +7,7 @@
   <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/stylus-native-loader" alt="Node.js Version"></a>
   <a href="https://packagephobia.com/result?p=stylus-native-loader"><img src="https://packagephobia.com/badge?p=stylus-native-loader" alt="Size"></a>
   <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/dm/stylus-native-loader" alt="Downloads"></a>
-  <a href="https://github.com/slightlyfaulty/stylus-native-loader/issues?q="><img src="https://img.shields.io/maintenance/yes/2022" alt="Maintained"></a>
+  <a href="https://github.com/slightlyfaulty/stylus-native-loader/issues?q="><img src="https://img.shields.io/maintenance/yes/2023" alt="Maintained"></a>
 </p>
 
 # stylus-native-loader
@@ -33,19 +33,21 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 *Build times for the [vuejs.org Stylus source code](https://github.com/vuejs/vuejs.org/tree/master/themes/vue/source/css), sorted from fastest to slowest.*
 
-|                                                              | Min      | Max      | Average      | Diff %  |
-| ------------------------------------------------------------ | -------- | -------- | ------------ | ------- |
-| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 73.41ms  | 102.84ms | **83.25ms**  |         |
-| **stylus-native-loader**                                     | 83.03ms  | 104.99ms | **90.80ms**  | +9.06%  |
-| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 125.02ms | 154.99ms | **144.40ms** | +73.45% |
-| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09% |
+|                                                              | Min      | Max      | Average      | Overhead |
+| ------------------------------------------------------------ | -------- | -------- | ------------ |------------|
+| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 73.41ms  | 102.84ms | **83.25ms**  |            |
+| **stylus-native-loader**                                     | 83.03ms  | 104.99ms | **90.80ms**  | +9.06%     |
+| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 125.02ms | 154.99ms | **144.40ms** | +73.45%    |
+| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09%   |
 
 ## Getting started
 
 To begin, install `stylus-native-loader` and `stylus`:
 
 ```sh
-pnpm i -D stylus-native-loader stylus
+pnpm add -D stylus-native-loader stylus
+# or
+npm i -D stylus-native-loader stylus
 ```
 
 Then add the loader to your **webpack.config.js**. For example, a minimal configuration might look like this:
@@ -78,7 +80,7 @@ module.exports = {
 
   resolve: {
     // All aliases are used for Stylus @import and @require path resolution
-    // See `alias` loader option below for adding stylus-specific aliases
+    // See `alias` loader option below for adding Stylus-specific aliases
     alias: {
       // A standard alias that matches the first segment of an import path
       // Note: Tilde (~) is not required, but is convention for stylesheet aliases
@@ -114,7 +116,7 @@ module.exports = {
             loader: 'stylus-native-loader',
             options: {
               /**
-               * Specify Stylus plugins to use. Plugins may be passed as
+               * Specify Stylus plugins to use. Plugins can be passed as
                * strings instead of importing them in your Webpack config.
                *
                * @type {string|Function|(string|Function)[]}
