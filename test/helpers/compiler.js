@@ -1,5 +1,4 @@
 import path from 'path'
-
 import webpack from 'webpack'
 import { createFsFromVolume, Volume } from 'memfs'
 
@@ -7,6 +6,7 @@ export function getCompiler(fixture, callback, loaderOptions = {}, config = {}, 
 	loader = loader || path.resolve(__dirname, '../../src/cjs.js')
 
 	let rules = []
+
 	if (config.module && config.module.rules) {
 		rules = config.module.rules
 		delete config.module

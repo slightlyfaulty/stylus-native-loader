@@ -35,10 +35,9 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 |                                                              | Min      | Max      | Average      | Overhead |
 | ------------------------------------------------------------ | -------- | -------- | ------------ |------------|
-| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 73.41ms  | 102.84ms | **83.25ms**  |            |
-| **stylus-native-loader**                                     | 83.03ms  | 104.99ms | **90.80ms**  | +9.06%     |
-| **[stylus-relative-loader](https://github.com/walmartlabs/stylus-relative-loader)** | 125.02ms | 154.99ms | **144.40ms** | +73.45%    |
-| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 140.82ms  | 204.26ms | **166.58ms** | +100.09%   |
+| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 93.26ms  | 98.72ms | **95.97ms**  |            |
+| **stylus-native-loader**                                     | 101.72ms  | 107.23ms | **104.37ms**  | +8.76%     |
+| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 167.18ms  | 201.92ms | **180.69ms** | +88.28%   |
 
 ## Getting started
 

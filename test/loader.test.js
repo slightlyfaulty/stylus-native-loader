@@ -2,6 +2,7 @@ import path from 'path'
 
 import stylus from 'stylus'
 import nib from 'nib'
+import { VueLoaderPlugin } from 'vue-loader'
 
 import { compile } from './helpers/compiler'
 
@@ -204,8 +205,6 @@ describe("loader", () => {
 	})
 
 	it("should work with vue component files", async () => {
-		const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
 		check(await compile('vue/index.js', {}, {
 			module: {
 				rules: [

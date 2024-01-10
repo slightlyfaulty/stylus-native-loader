@@ -1,9 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-
 import stylus from 'stylus'
-import delay from 'delay'
-
 import { getCompiler } from './helpers/compiler'
 
 const fixture = 'benchmark.styl'
@@ -12,7 +9,6 @@ const delayMs = 50
 
 const loaders = [
 	'stylus-loader',
-	'stylus-relative-loader',
 	'stylus-native-loader',
 	'stylus',
 ]
@@ -58,6 +54,12 @@ async function compile(compiler) {
 	} else {
 		return compileWebpack(compiler)
 	}
+}
+
+function delay(ms) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, ms)
+	})
 }
 
 function average(arr) {
