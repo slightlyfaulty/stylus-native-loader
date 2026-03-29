@@ -7,7 +7,7 @@
   <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/stylus-native-loader" alt="Node.js Version"></a>
   <a href="https://packagephobia.com/result?p=stylus-native-loader"><img src="https://packagephobia.com/badge?p=stylus-native-loader" alt="Size"></a>
   <a href="https://www.npmjs.com/package/stylus-native-loader"><img src="https://img.shields.io/npm/dm/stylus-native-loader" alt="Downloads"></a>
-  <a href="https://github.com/slightlyfaulty/stylus-native-loader/issues?q="><img src="https://img.shields.io/maintenance/yes/2025" alt="Maintained"></a>
+  <a href="https://github.com/slightlyfaulty/stylus-native-loader/issues?q="><img src="https://img.shields.io/maintenance/yes/2026" alt="Maintained"></a>
 </p>
 
 # stylus-native-loader
@@ -33,11 +33,11 @@ The result is a highly configurable, lean Stylus loader with near-baseline build
 
 *Build times for the [vuejs.org Stylus source code](https://github.com/vuejs/vuejs.org/tree/master/themes/vue/source/css), sorted from fastest to slowest.*
 
-|                                                              | Min      | Max      | Average      | Overhead |
-| ------------------------------------------------------------ | -------- | -------- | ------------ |------------|
-| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack) | 93.26ms  | 98.72ms | **95.97ms**  |            |
-| **stylus-native-loader**                                     | 101.72ms  | 107.23ms | **104.37ms**  | +8.76%     |
-| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)**  | 167.18ms  | 201.92ms | **180.69ms** | +88.28%   |
+|                                                                       | Min      | Max      | Average      | Overhead |
+|-----------------------------------------------------------------------|----------|----------|--------------|----------|
+| **[stylus](https://stylus-lang.com/docs/js.html)** (no Webpack)       | 93.26ms  | 98.72ms  | **95.97ms**  |          |
+| **stylus-native-loader**                                              | 101.72ms | 107.23ms | **104.37ms** | +8.76%   |
+| **[stylus-loader](https://github.com/webpack-contrib/stylus-loader)** | 167.18ms | 201.92ms | **180.69ms** | +88.28%  |
 
 ## Getting started
 
